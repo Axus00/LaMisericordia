@@ -28,8 +28,13 @@ CREATE TABLE AsesoresRecepcion (
     Contrasena VARCHAR (255)
 );
 
+ALTER TABLE `AsesoresRecepcion` ADD Roles JSON;
+
+TRUNCATE TABLE `AsesoresRecepcion`;
+
 /*Insertar información*/
 INSERT INTO AsesoresRecepcion (Correo, Contrasena) VALUES ('ejemplo@correo.com', 'contrasena123');
+INSERT INTO `AsesoresRecepcion` (Correo, Contrasena, `Roles`) VALUES ('juan@lamisericordia.com', 'juan123', '["Asesor"]');
 
 
 CREATE TABLE AsignacionTurnos (
@@ -39,3 +44,4 @@ CREATE TABLE AsignacionTurnos (
     FOREIGN KEY (AsesorId) REFERENCES AsesoresRecepcion(Id),
     FOREIGN KEY (TurnoId) REFERENCES Turnos(Id)
 );
+

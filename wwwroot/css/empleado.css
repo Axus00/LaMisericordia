@@ -7,14 +7,50 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.card {
-    border: 1px solid #000;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+-webkit-scrollbar- {
+    display: none;
+}
+
+.container{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
+    height: 100vh;
+    margin-left: 25%;
+    
+    h1{
+        font-size: 5rem;
+    }
+    h2{
+        font-size: 3rem;
+    }
+    
+    .form-control{
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        outline: none;
+        text-align: center;
+        border-bottom: 1px solid #000
+        position: relative;
+    }
+    input::placeholder{
+        text-align: center;
+    }
+    
+    .icon{
+        position: absolute;
+        margin-top: 10px;
+    }
+    
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    padding: 50px;
 }
 
 .submit{
