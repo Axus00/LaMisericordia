@@ -1,39 +1,54 @@
-<h1>Hello, i am Home</h1>
-
+<br>
+<br>
+<br>
+<br>
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <table class="table">
+            <div class="">
+                <h1>Turnos en Pantalla</h1>
+            </div>
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Turno</th>
+                        <th scope="col">Documento de usuario</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                    </tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                    </tr>
+                    @foreach(var Turnos in Model){
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>5-MC105</td>
+                            <td>10254840</td>
+                            <td>En proceso</td>
+                            <td>
+                                <button class="btn btn-primary">Liberar</button>
+                                <button class="btn btn-danger">Ausente</button>
+
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
         <br>
         <br>
         <div class="col-md-12">
-            <table class="table">
+            <br>
+            <br>
+            <br>
+            <div class="" >
+                <h1>Gestor Turnos</h1>
+                <button>Medicamentos</button>
+                <button>Realizar Pagos</button>
+                <button>Cita General</button>
+            </div>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -44,16 +59,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                        <td>mc-128</td>
-                        <td>1023626270</td>
-                        <td>En espera</td>
-                        <td>
-                            <button class="btn btn-primary"></button>
-                        </td>
+                    @foreach(var Turnos in Model){
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>mc-128</td>
+                            <td>1023626270</td>
+                            <td>En espera</td>
+                            <td>
+                                <button class="btn btn-primary">Subir Turno</button>
+                            </td>
 
-                    </tr>
+                        </tr>
+
+                    }
                     
                 </tbody>
             </table>

@@ -1,10 +1,21 @@
 using LaMisericordia.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Configuramos servicio de cookies / seguridad
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option =>
+    {
+        option.LoginPath = "/Empleados/Index";
+        option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        option.AccessDeniedPath = "/Home/Privacy";
+    });
+
 
 //conexión a Db
 builder.Services.AddDbContext<BaseContext>(options => 
@@ -29,7 +40,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+//agregamos authentication
+app.UseAuthentication();
+
 app.UseAuthorization();
+
+//configuramos session
+//app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

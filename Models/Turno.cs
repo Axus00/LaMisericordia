@@ -7,5 +7,5 @@ public class Turno
     public int ServicioId { get; set; }
     public DateTime? FechaHoraInicio { get; set; }
     public DateTime? FechaHoraFin { get; set; }
-    public string Estado { get; set; }
+    public string? Estado { get; set; }
 }
