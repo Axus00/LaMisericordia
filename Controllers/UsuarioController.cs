@@ -26,6 +26,11 @@ namespace LaMisericordia.Controllers
             return View();
         }
 
+        public IActionResult FormIndex() 
+        {
+            return View();
+        }
+
     }
 
 }
