@@ -1,0 +1,59 @@
+@model AsesorRecepcion
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/empleado.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row w-100">
+            <div class="col-md-6">
+                <h1 class="text-center mb-5">La Misericordia</h1>
+                <div class="card">
+                    <div class="login d-flex flex-column justify-content-center align-items-center">
+                        <img src="~/assets/img/Perfil.png" alt="icono perfil" width="80px" height="80px">
+                        <h2 class="text-center">Login</h2>
+                    </div>
+                    
+                    <form class="form p-3" method="post" asp-action="Login">
+                        <div class="form-group mb-5">
+                            <label>Email</label>
+                            <div class="email">
+                                <i class="icon fa-solid fa-envelope"></i>
+                                <input class="form-control" type="text" placeholder="Write Email..." asp-for="Correo">
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label>Password</label>
+                            <div class="email">
+                                <i class="icon fa-solid fa-lock"></i>
+                                <input class="form-control" type="password" placeholder="Write Password..." asp-for="Contrasena">
+                            </div>
+                        </div>
+
+                        <button class="submit btn btn-xm btn-primary mt-5" type="submit">Submit</button>
+                        
+                        @if (TempData["Message"] != null)
+                        {
+                            <div class="alert alert-success mt-2" role="alert">
+                                @TempData["Message"]
+                            </div>
+                        }
+                        
+                        @if (TempData["MessageError"] != null)
+                        {
+                            <div class="alert alert-danger mt-3" role="alert">
+                                @TempData["MessageError"]
+                            </div>
+                        }
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
