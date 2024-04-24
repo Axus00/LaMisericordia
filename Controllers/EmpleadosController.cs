@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LaMisericordia.Controllers;
 
-public class EmailController : Controller
+public class EmpleadosController : Controller
 {
     //vistas
     public IActionResult Index()
