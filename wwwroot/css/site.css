@@ -64,26 +64,3 @@ html {
 
 }
 
-body {
-  margin-bottom: 60px;
-  font-family: "Signika Negative", sans-serif;
-
-}
-
-.titleOptionIndex {
-  font-size: 50px;
-  font-weight: bolder;
-}
-
-.container{
-  margin: auto;
-}
-
-.btnOptions .btn {
-  height: 50px; 
-  font-size: 20px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
