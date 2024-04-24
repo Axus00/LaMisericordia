@@ -2,23 +2,54 @@
 
 body {
     font-family: "Signika Negative", sans-serif;
-    background-image: url("../assets/img/Logo.png");
+    background: linear-gradient(rgba(253, 253, 253, 0.685), 
+    rgba(255, 255, 255, 0.568)), url("../assets/img/fondoOptions.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
 }
   
 .titleOptionIndex {
-    font-size: 50px;
+    font-size: 50%;
     font-weight: bolder;
+
 }
 
 .container{
     margin: auto;
 }
 
+
 .btnOptions .btn {
     height: 50px; 
-    font-size: 20px;
+    font-size: 25px;
+    padding: 30px 20px;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #424bae, #009f58);
+    box-shadow: 0px 4px 5px rgba(125, 235, 215);
+    border: none;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.boxBtn {
+    height: 100px;
+    background-color: black;
+}
+
+.logo {
+    width: auto;
+    height: 160px;
+}
+
+.textDescription {
+    font-size: 180%;
+}
+
+.logoWifi {
+    width: auto;
+    height: 120px;
 }
