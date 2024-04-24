@@ -14,5 +14,5 @@ public class BaseContext : DbContext
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Turno> Turnos { get; set; }
     public DbSet<Servicio> Servicios { get; set; }
-    public DbSet<AsesorRecepcion> AsesorRecepciones { get; set; }
+    public DbSet<AsesorRecepcion> AsesoresRecepcion { get; set; }
 } 

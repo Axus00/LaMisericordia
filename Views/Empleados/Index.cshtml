@@ -1,3 +1,4 @@
+@model AsesorRecepcion
 @{
     ViewData["Title"] = "Index";
 }
@@ -5,30 +6,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
-    
+    <link rel="stylesheet" href="~/css/empleado.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="container">
-        <div class="row">
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh">
+        <div class="row w-100">
             <div class="col-md-6">
                 <div class="card">
                     <h1 class="text-center">Login</h1>
 
-                    <form class="form p" method="post">
+                    <form class="form p-3" method="get" asp-action="Login">
                         <div class="mb-3">
-                            <label>Document</label>
-                            <input class="form-control" type="text" placeholder="Document...">
+                            <label>Email</label>
+                            <input class="form-control" type="text" placeholder="Document..." asp-for="Correo">
                         </div>
                         <div class="mb-3">
                             <label>Password</label>
-                            <input class="form-control" type="text" placeholder="Password...">
+                            <input class="form-control" type="password" placeholder="Password..." asp-for="Contrasena">
                         </div>
 
-                        <button class="btn btn-sm btn-success" type="submit">Submit</button>
+                        <button class="submit btn btn-sm btn-success" type="submit">Submit</button>
                     </form>
                 </div>
-                
             </div>
         </div>
     </div>
