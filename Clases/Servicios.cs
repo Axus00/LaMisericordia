@@ -19,10 +19,11 @@ public class Servicios
     public List<Turno> ServicioInner(int usuariosId)
     {
         var peticion = from Turno in _context.Turnos
-                        join Usario in _context.Usuarios on Turno.UsuariosId equals usuariosId
+                        join Usuario in _context.Usuarios on Turno.UsuariosId equals usuariosId
                         where usuariosId == usuariosId
                         select Turno;
         
         return peticion.ToList();
     }
+
 }

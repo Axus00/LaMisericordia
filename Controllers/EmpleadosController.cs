@@ -27,6 +27,8 @@ public class EmpleadosController : Controller
         return View();
     }
 
+
+
     //Login
     [HttpPost]
     public async Task<IActionResult> Login(string correo, string contrasena)
@@ -98,11 +100,13 @@ public class EmpleadosController : Controller
     [Authorize(Roles = "Asesor")]
     public async Task <IActionResult> Home()
     {
+        var contadorTurno = _context.Turnos.Count();
         //capturamos cookies
         var numeroModulo = HttpContext.Request.Cookies["ModuloAsesor"];
         var modulo = HttpContext.Request.Cookies["Modulo"];
 
         @ViewBag.modulo = numeroModulo;
+        @ViewBag.contador = contadorTurno;
 
 
         return View(await _context.Turnos.ToListAsync());
