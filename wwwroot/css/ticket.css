@@ -4,18 +4,18 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-size: 48px;
 }
 
 .box {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    
+    justify-content: left;
     
 }
 
-body{
-    background-image: url(../assets/img/Fondo.jpg);
+.table {
+    background-image: url(../assets/img/Nubes.jpg);
     object-fit: cover;
 }
+
 
