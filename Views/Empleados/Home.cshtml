@@ -1,60 +1,86 @@
-<h1>Hello, i am Home</h1>
+<br>
+<br>
+<br>
+<br>
 
+<button>salir</button>
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <table class="table">
+            <div class="">
+                <h1>Turnos en Pantalla</h1>
+            </div>
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Turno</th>
+                        <th scope="col">Documento de usuario</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Modulo</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                    </tr>
+                    @foreach(var Turnos in Model){
+                        if(@Turnos.Estado == "En proceso"){
+                            <tr>
+                                <th scope="row">@Turnos.Id</th>
+                                <td>@Turnos.NameTurno</td>
+                                <td>1023626270</td>
+                                <td>@Turnos.Estado</td>
+                                <td>@Turnos.Modulo</td>
+                                <td>
+                                    <a class="btn btn-primary" asp-controller="Empleados" asp-action="Liberar" asp-route-id = "@Turnos.Id">Liberar</a>
+                                    <a class="btn btn-danger" asp-controller="Empleados" asp-action="Ausente" asp-route-id= "@Turnos.Id">Ausente</a>
+                                </td>
+                            </tr>
+                        }
+                    }
                 </tbody>
             </table>
         </div>
         <br>
         <br>
         <div class="col-md-12">
-            <table class="table">
+            <br>
+            <br>
+            <br>
+            <div class="" >
+                <h1>Gestor Turnos</h1>
+                <a class="btn btn-info" asp-controller="Empleados" asp-action="Medicamentos">Medicamentos</a>
+                <a class="btn btn-primary" asp-controller="Empleados" asp-action="Pagos">Realizar Pagos</a>
+                <a class="btn btn-danger" asp-controller="Empleados" asp-action="General">Cita General</a>
+            </div>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Turno</th>
                         <th scope="col">Documento De usuario</th>
+                        <th scope="col">Tipo de Turno</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                        <td>mc-128</td>
-                        <td>1023626270</td>
-                        <td>En espera</td>
-                        <td>
-                            <button class="btn btn-primary"></button>
-                        </td>
+                    @foreach(var Turnos in Model){
+                        if(@Turnos.Estado == "En espera"){
+                            <tr>
+                                <th scope="row">@Turnos.Id</th>
+                                <td>@Turnos.NameTurno</td>
+                                <td>1023626270</td>
+                                <td>@Turnos.typeServicio</td>
+                                <td>@Turnos.Estado</td>
+                                <td>
+                                    <a class="btn btn-primary" asp-controller="Empleados" asp-action="SubirTurno" asp-route-id="@Turnos.Id">Subir Turno</a>
+                                </td>
 
-                    </tr>
+                            </tr>
+                        }
+
+                    }
                     
                 </tbody>
             </table>
