@@ -1,0 +1,34 @@
+
+@{
+    ViewData["Title"] = "Ticket";
+    <link rel="stylesheet" href="~/css/ticket.css" asp-append-version="true" />
+}
+
+<div class="row d-flex justify-content-between mb-4">
+
+        <img class="logo ms-4 mt-4" src="../assets/img/Logo.png" alt="Descripción de la imagen">    
+
+        <img class="logoWifi me-4 mt-4" src="../assets/img/iconWifiFree.png" alt="Descripción de la imagen">
+
+</div>
+
+<div class="container" style="height: 65vh;">
+
+    <div class="d-flex flex-column justify-content-center align-item-center" style="height: 100%;">
+        <div class="row d-flex flex-column justify-content-center align-items-center">
+            <div class="col-md-7 containerInfo text-center d-flex flex-column justify-content-center">
+                <h2 class="textID mb-4">ID: <span>xxxxxxxxxxxxxxx</span></h2>
+                <h2 class="textDate mb-4">Fecha: <span>xx/xx/xxxx</span></h2>
+                <h3 class="textName mb-5">CLINICA LA MISERICORDIA</h3>
+                <h2 class="textDescription mb-4">Su turno es:</h2>
+                <h1 class="bold ticket"> 
+                    @ViewBag.CodigoTurno
+                </h1>
+                <div class="row d-flex justify-content-center mt-2">
+                    <a type="button" class="btn btn-primary w-50 btnTurno rounded-5 mt-3" asp-controller="Usuario" asp-action="Index">TOMAR TURNO</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

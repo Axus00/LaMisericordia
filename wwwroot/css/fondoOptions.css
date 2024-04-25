@@ -3,7 +3,7 @@
 body {
     font-family: "Signika Negative", sans-serif;
     background: linear-gradient(rgba(253, 253, 253, 0.685), 
-    rgba(255, 255, 255, 0.568)), url("../assets/img/fondoOptions.jpg");
+    rgba(255, 255, 255, 0.568)), url("../assets/img/FondoIndex.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -13,7 +13,6 @@ body {
 .titleOptionIndex {
     font-size: 50%;
     font-weight: bolder;
-
 }
 
 .container{
@@ -22,8 +21,9 @@ body {
 
 
 .btnOptions .btn {
-    height: 50px; 
-    font-size: 25px;
+    width: 20%;
+    height: 80px; 
+    font-size: 1.7rem;
     padding: 30px 20px;
     border-radius: 10px;
     background-image: linear-gradient(to right, #424bae, #009f58);
@@ -43,6 +43,11 @@ body {
 .logo {
     width: auto;
     height: 160px;
+}
+
+.logoClick {
+    width: auto;
+    height: 160px; 
 }
 
 .textDescription {
