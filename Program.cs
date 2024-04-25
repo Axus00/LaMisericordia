@@ -2,6 +2,7 @@ using LaMisericordia.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -24,6 +25,12 @@ builder.Services.AddDbContext<BaseContext>(options =>
                 Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.20-mysql")));
 
 
+builder.Services.AddSession(options => {
+    options.IdleTimeout = TimeSpan.FromMinutes(20);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+    options.Cookie.SameSite = SameSiteMode.Strict;
+});
 
 var app = builder.Build();
 
@@ -45,6 +52,7 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
+app.UseSession();
 //configuramos session
 //app.UseSession();
 

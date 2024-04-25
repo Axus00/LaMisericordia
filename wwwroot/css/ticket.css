@@ -40,5 +40,16 @@ h2 {
 }
 
 .btnTurno{
+    width: 20%;
+    height: 50px; 
     font-size: 1.7rem;
+    padding: 30px 20px;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #424bae, #009f58);
+    box-shadow: 0px 4px 5px rgba(125, 235, 215);
+    border: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

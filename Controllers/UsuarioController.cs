@@ -2,8 +2,11 @@
 
 using Microsoft.AspNetCore.Mvc; 
 using LaMisericordia.Data; 
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore; 
 using LaMisericordia.Models; 
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 // Definimos el espacio de nombres y la clase para nuestro controlador de empleados
 
@@ -41,7 +44,7 @@ namespace LaMisericordia.Controllers
             return View();
         }
 
-        public ActionResult Ticket(string servicio)
+        public async Task<ActionResult> Ticket(string servicio)
         {
             int numeroTurno = ObtenerNumeroTurno(); 
 
@@ -49,17 +52,24 @@ namespace LaMisericordia.Controllers
 
             ViewBag.CodigoTurno = codigoTurno;
 
+            // _BaseContext.Turnos.Add(codigoTurno);
+
+            await _BaseContext.SaveChangesAsync();
+
             return View();
         }
         
         private int ObtenerNumeroTurno()
         {
             
-            int numeroTurno = 0;
+            int numeroTurnoActual = Convert.ToInt32(HttpContext.Request.Cookies["NumeroTurno"]);
 
-            numeroTurno++;
+            numeroTurnoActual++;
 
-            return numeroTurno;
+            Response.Cookies.Append("NumeroTurno", numeroTurnoActual.ToString());
+
+            return numeroTurnoActual;
+            
         }
 
     

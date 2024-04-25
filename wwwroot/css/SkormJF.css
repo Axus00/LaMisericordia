@@ -117,6 +117,11 @@ select, input{
 .Buttons:nth-child(10), .Buttons:nth-child(12){
     background-image: linear-gradient(to right, #424bae, #009f58);
     box-shadow: 0px 4px 5px rgba(125, 235, 215);
+    text-decoration: none;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
