@@ -31,6 +31,8 @@ public class EmpleadosController : Controller
         //Inicio configuración cookie para los roles
         if(asesor != null)
         {
+
+            Response.Cookies.Append("Modulo",asesor.Modulo);
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Email, asesor.Correo),
@@ -73,10 +75,72 @@ public class EmpleadosController : Controller
 
 
     [Authorize(Roles = "Asesor")]
-    
+
+
     public async Task <IActionResult> Home()
     {
+        var modulo = HttpContext.Request.Cookies["Modulo"];
         return View(await _context.Turnos.ToListAsync());
     }
+
+    public IActionResult Liberar(int id)
+    {
+
+        var turno = _context.Turnos.FirstOrDefault(t => t.Id == id);
+        turno.Estado = "Finalizado";
+        turno.FechaHoraFin =DateTime.Now;
+        _context.Turnos.Update(turno);
+        _context.SaveChanges();
+        return RedirectToAction("Home");
+
+    }
+
+
+    public IActionResult Ausente(int id)
+    {
+        var turno  = _context.Turnos.FirstOrDefault(d => d.Id == id);
+        turno.Estado = "Ausente";
+        turno.FechaHoraFin = DateTime.Now;
+        _context.Turnos.Update(turno);
+        _context.SaveChanges();
+        return RedirectToAction("Home");
+
+    }
+
+    public IActionResult SubirTurno(int id )
+    {
+        var modulo = HttpContext.Request.Cookies["Modulo"];
+        var turno = _context.Turnos.FirstOrDefault(d => d.Id == id);
+
+        turno.Estado = "En proceso";
+        turno.Modulo = modulo;
+        turno.FechaHoraFin = DateTime.Now;
+
+        _context.Turnos.Update(turno);
+        _context.SaveChanges();
+        return RedirectToAction("Home");        
+    }
+
+
+    public async Task <IActionResult> Medicamentos()
+    {
+        var Medicamentos = _context.Turnos.Where(c => c.typeServicio == "Medicamentos");
+        
+        return View("Home",await Medicamentos.ToListAsync());
+    }
+
+    public async Task <IActionResult> Pagos()
+    {
+        var Pagos = _context.Turnos.Where(c => c.typeServicio == "Pagos");
+        return View("Home",await Pagos.ToListAsync());
+    }
+
+    public async Task <IActionResult> General()
+    {
+        var General = _context.Turnos.Where(c => c.typeServicio == "General");
+        return View("Home",await General.ToListAsync());
+    }
+
+    
 }
 

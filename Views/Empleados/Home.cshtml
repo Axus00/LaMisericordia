@@ -3,6 +3,8 @@
 <br>
 <br>
 
+<button>salir</button>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -16,22 +18,25 @@
                         <th scope="col">Turno</th>
                         <th scope="col">Documento de usuario</th>
                         <th scope="col">Estado</th>
+                        <th scope="col">Modulo</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach(var Turnos in Model){
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>5-MC105</td>
-                            <td>10254840</td>
-                            <td>En proceso</td>
-                            <td>
-                                <button class="btn btn-primary">Liberar</button>
-                                <button class="btn btn-danger">Ausente</button>
-
-                            </td>
-                        </tr>
+                        if(@Turnos.Estado == "En proceso"){
+                            <tr>
+                                <th scope="row">@Turnos.Id</th>
+                                <td>@Turnos.NameTurno</td>
+                                <td>1023626270</td>
+                                <td>@Turnos.Estado</td>
+                                <td>@Turnos.Modulo</td>
+                                <td>
+                                    <a class="btn btn-primary" asp-controller="Empleados" asp-action="Liberar" asp-route-id = "@Turnos.Id">Liberar</a>
+                                    <a class="btn btn-danger" asp-controller="Empleados" asp-action="Ausente" asp-route-id= "@Turnos.Id">Ausente</a>
+                                </td>
+                            </tr>
+                        }
                     }
                 </tbody>
             </table>
@@ -44,9 +49,9 @@
             <br>
             <div class="" >
                 <h1>Gestor Turnos</h1>
-                <button>Medicamentos</button>
-                <button>Realizar Pagos</button>
-                <button>Cita General</button>
+                <a class="btn btn-info" asp-controller="Empleados" asp-action="Medicamentos">Medicamentos</a>
+                <a class="btn btn-primary" asp-controller="Empleados" asp-action="Pagos">Realizar Pagos</a>
+                <a class="btn btn-danger" asp-controller="Empleados" asp-action="General">Cita General</a>
             </div>
             <table class="table table-striped">
                 <thead>
@@ -54,22 +59,26 @@
                         <th scope="col">ID</th>
                         <th scope="col">Turno</th>
                         <th scope="col">Documento De usuario</th>
+                        <th scope="col">Tipo de Turno</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach(var Turnos in Model){
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>mc-128</td>
-                            <td>1023626270</td>
-                            <td>En espera</td>
-                            <td>
-                                <button class="btn btn-primary">Subir Turno</button>
-                            </td>
+                        if(@Turnos.Estado == "En espera"){
+                            <tr>
+                                <th scope="row">@Turnos.Id</th>
+                                <td>@Turnos.NameTurno</td>
+                                <td>1023626270</td>
+                                <td>@Turnos.typeServicio</td>
+                                <td>@Turnos.Estado</td>
+                                <td>
+                                    <a class="btn btn-primary" asp-controller="Empleados" asp-action="SubirTurno" asp-route-id="@Turnos.Id">Subir Turno</a>
+                                </td>
 
-                        </tr>
+                            </tr>
+                        }
 
                     }
                     
