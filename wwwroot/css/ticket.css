@@ -1,0 +1,44 @@
+body {
+    font-family: "Signika Negative", sans-serif;
+    background: linear-gradient(rgba(253, 253, 253, 0.685), 
+    rgba(255, 255, 255, 0.568)), url("../assets/img/FondoIndex.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.logo {
+ 
+    width: auto;
+    height: 160px;
+}
+
+.logoWifi {
+    width: auto;
+    height: 120px;
+}
+
+.containerInfo {
+    background-color: white;
+    border: black solid 3px;
+    border-radius: 25px;
+    height: 100%;
+    padding: 4%;
+}
+
+h3 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+.ticket {
+    font-size: 9em;
+}
+
+.btnTurno{
+    font-size: 1.7rem;
+}

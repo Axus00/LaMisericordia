@@ -4,21 +4,21 @@
     <link rel="stylesheet" href="~/css/fondoOptions.css" asp-append-version="true" />
 }
 
-<div class="row d-flex justify-content-between">
+<div class="row row-logos d-flex justify-content-between mb-2">
 
-        <img class="logo ms-4 mt-4" src="../assets/img/Logo.png" alt="Descripción de la imagen">    
+        <img class="logo ms-4 mt-4 img-fluid" src="../assets/img/Logo.png" alt="Descripción de la imagen">    
 
-        <img class="logoWifi me-4 mt-4" src="../assets/img/iconWifiFree.png" alt="Descripción de la imagen">
+        <img class="logoWifi me-4 mt-4 img-fluid" src="../assets/img/iconWifiFree.png" alt="Descripción de la imagen">
 
 </div>
 
-<div class="container" style="height: 50vh;">
+<div class="container" style="height: 60vh;">
 
-    <div class="d-flex flex-column justify-content-center align-item-center" style="height: 100%;">
+    <div class="d-flex flex-column justify-content-center align-item-center" style="height: 100%; width: 100%">
 
         <div class="row d-flex justify-content-center">
             <div class="col d-flex justify-content-center ">
-                <img class="logo" src="../assets/img/iconClick.png" alt="Descripción de la imagen">
+                <img class="logoClick img-fluid" src="../assets/img/iconClick.png" alt="Descripción de la imagen">
             </div>
         </div>
 
@@ -28,23 +28,18 @@
 
         <div class="row btnOptions d-flex justify-content-center">
             <div class="col-md-3">
-                <a type="button" class="btn btn-primary btnCustom me-5 mb-3 w-100">Solicitar Medicamento</a>
+                <a asp-route-servicio="SM" class="btn btn-primary btnCustom me-5 mb-3 w-100" asp-controller="usuario" asp-action="ticket" value="CM">Solicitar Medicamento</a>
             </div>
 
             <div class="col-md-3">
-                <a type="button" class="btn btn-primary btnCustom me-5 mb-3 w-100 ">Ver Facturas</a>
+                <a asp-route-servicio="VF" class="btn btn-primary btnCustom me-5 mb-3 w-100" asp-controller="usuario" asp-action="ticket" value="PF">Ver Facturas</a>
             </div>
 
             <div class="col-md-3">
-                <a type="button" class="btn btn-primary btnCustom me-5 mb-2 w-100">Solicitar Citas</a>
+                <a asp-route-servicio="SC" class="btn btn-primary btnCustom me-5 mb-2 w-100" asp-controller="usuario" asp-action="ticket" value="SC">Solicitar Citas</a>
             </div>
         </div>
     </div>
 </div>
 
 
-<footer>
-    <div class=" card-footer  row-footer d-flex justify-content center">
-        <h6>Version 1.16</h6>
-    </div>
-</footer>

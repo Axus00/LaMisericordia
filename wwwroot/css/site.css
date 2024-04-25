@@ -22,7 +22,3 @@ html {
   min-height: 100%;
 }
 
-.btn:hover{
-  box-shadow: inset 0px 0px 6px 4px var(--obsidian), 0px 0px 6px 2px var(--obsidian);
-}
-

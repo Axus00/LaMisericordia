@@ -26,14 +26,37 @@ namespace LaMisericordia.Controllers
             return View();
         }
 
-<<<<<<< HEAD
-        public IActionResult FormIndex() 
-=======
-        public ActionResult OptionIndex()
->>>>>>> bcb12de21aadca55e07dda622f50d810388964ca
+        public IActionResult FormIndex()        
         {
             return View();
         }
+        public ActionResult OptionIndex()
+        {
+            return View();
+        }
+
+        public ActionResult Ticket(string servicio)
+        {
+            int numeroTurno = ObtenerNumeroTurno(); 
+
+            string codigoTurno = servicio + numeroTurno.ToString().PadLeft(3, '0');
+
+            ViewBag.CodigoTurno = codigoTurno;
+
+            return View();
+        }
+        
+        private int ObtenerNumeroTurno()
+        {
+            
+            int numeroTurno = 0;
+
+            numeroTurno++;
+
+            return numeroTurno;
+        }
+
+    
 
     }
 
