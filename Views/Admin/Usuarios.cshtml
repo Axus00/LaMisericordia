@@ -1,0 +1,24 @@
+<h1>Hola soy Usuarios</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Documento</th>
+      <th scope="col">Tipo de Documento</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach(var Usuarios in Model){
+        <tr>
+            <th scope="row">@Usuarios.Id</th>
+            <td>@Usuarios.DocumentoIdentidad</td>
+            <td>Otto</td>
+            <td>
+                <button class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+
+    }
+  </tbody>
+</table>
