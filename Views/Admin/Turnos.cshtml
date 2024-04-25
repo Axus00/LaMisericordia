@@ -1,0 +1,44 @@
+<h1>Hola soy Turnos</h1>
+
+<br>
+<br>
+<form action="">
+    <input type="text">
+    <button class="btn btn-primary">Search</button>
+</form>
+<br>
+<a class="btn btn-primary">Medicamentos</a>
+<a class="btn btn-info">Pagos</a>
+<a class="btn btn-danger">General</a>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">UsuarioId</th>
+      <th scope="col">tipo de servicio</th>
+      <th scope="col">Codigo</th>
+      <th scope="col">Fecha de inicio</th>
+      <th scope="col">Fecha fin</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Modulo</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach(var Turnos in Model){
+        <tr>
+            <th scope="row">@Turnos.Id</th>
+            <td>@Turnos.UsuariosId</td>
+            <td>@Turnos.typeServicio</td>
+            <td>@Turnos.NameTurno</td>
+            <td>@Turnos.FechaHoraInicio</td>
+            <td>@Turnos.Estado</td>
+            <td>@Turnos.Modulo</td>
+            <td>
+                <button class="btn btn-danger">Eliminar</button>
+            </td>
+        </tr>
+
+    }
+  </tbody>
+</table>
