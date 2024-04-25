@@ -1,3 +1,4 @@
+@model AsesorRecepcion
 @{
     ViewData["Title"] = "Index";
 }
@@ -5,30 +6,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
-    
+    <link rel="stylesheet" href="~/css/empleado.css" asp-append-version="true" />
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card mt-5 px-5">
-                    <h1 class="text-center mt-5">Login</h1>
-
-                    <form class="form mb-5 mt-5 d-flex flex-column justify-content-center" method="post">
-                        <div class="mb-3">
-                            <label>Document</label>
-                            <input class="form-control" type="text" placeholder="Document...">
+        <div class="row w-100">
+            <div class="col-md-6 contenedor-form">
+                <h1 class="text-center mb-5">La Misericordia</h1>
+                <div class="card">
+                    <div class="login d-flex flex-column justify-content-center align-items-center">
+                        <img src="~/assets/img/Perfil.png" alt="icono perfil" width="80px" height="80px">
+                        <h2 class="text-center">Login</h2>
+                    </div>
+                    
+                    <form class="form p-3" method="post" asp-action="Login">
+                        <div class="form-group mb-5">
+                            <label>Email</label>
+                            <div class="email">
+                                <i class="icon fa-solid fa-envelope"></i>
+                                <input class="form-control" type="text" placeholder="Write Email..." asp-for="Correo">
+                            </div>
                         </div>
-                        <div class="mb-3">
+                        <div class="form-group mb-3">
                             <label>Password</label>
-                            <input class="form-control" type="text" placeholder="Password...">
+                            <div class="email">
+                                <i class="icon fa-solid fa-lock"></i>
+                                <input class="form-control" type="password" placeholder="Write Password..." asp-for="Contrasena">
+                            </div>
                         </div>
 
-                        <button class="btn btn-sm btn-success" type="submit" asp-controller="Empleados" asp-action="Home">Submit</button>
+                        <button class="submit btn btn-xm btn-primary mt-5" type="submit">Submit</button>
+                        
+                        @if (TempData["Message"] != null)
+                        {
+                            <div class="alert alert-success mt-2" role="alert">
+                                @TempData["Message"]
+                            </div>
+                        }
+                        
+                        @if (TempData["MessageError"] != null)
+                        {
+                            <div class="alert alert-danger mt-3" role="alert">
+                                @TempData["MessageError"]
+                            </div>
+                        }
                     </form>
                 </div>
-                
             </div>
         </div>
     </div>
