@@ -4,13 +4,6 @@ CREATE TABLE Usuarios (
 	DocumentoIdentidad VARCHAR(255)
 );
 
-CREATE TABLE Servicios (
-    Id INT AUTO_INCREMENT PRIMARY KEY,
-    Nombre VARCHAR(100),
-    UsuariosId INT,
-	FOREIGN KEY (UsuariosId) REFERENCES Usuarios(Id)
-);
-
 CREATE TABLE Turnos (
     Id INT AUTO_INCREMENT PRIMARY KEY,
     UsuariosId INT,
