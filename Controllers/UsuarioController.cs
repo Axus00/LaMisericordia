@@ -26,11 +26,10 @@ namespace LaMisericordia.Controllers
             return View();
         }
 
-<<<<<<< HEAD
-        public IActionResult FormIndex() 
-=======
+        public IActionResult FormIndex(){
+            return View();
+        } 
         public ActionResult OptionIndex()
->>>>>>> bcb12de21aadca55e07dda622f50d810388964ca
         {
             return View();
         }
