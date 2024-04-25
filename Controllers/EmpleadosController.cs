@@ -1,4 +1,5 @@
 using LaMisericordia.Data;
+using LaMisericordia.Clases;
 using LaMisericordia.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +13,12 @@ namespace LaMisericordia.Controllers;
 public class EmpleadosController : Controller
 {
     private readonly BaseContext _context;
-    public EmpleadosController(BaseContext context)
+
+    private readonly Servicios _servicios;
+    public EmpleadosController(BaseContext context, Servicios servicios)
     {
         _context = context;
+        _servicios = servicios;
     }
 
     //vistas
@@ -23,6 +27,7 @@ public class EmpleadosController : Controller
         return View();
     }
 
+    //Login
     [HttpPost]
     public async Task<IActionResult> Login(string correo, string contrasena)
     {
@@ -58,7 +63,9 @@ public class EmpleadosController : Controller
                 Secure = true
             };
                 
+        
             HttpContext.Response.Cookies.Append("Asesor", asesor.Id.ToString(), cookiesOptions);
+            HttpContext.Response.Cookies.Append("ModuloAsesor", asesor.Modulo, cookiesOptions);
 
             TempData["Message"] = "Login is already";
             //Guardamos y redireccionamos
@@ -73,14 +80,41 @@ public class EmpleadosController : Controller
         
     }
 
+    //Logout
+    public async Task<IActionResult> logout()
+    {
+        //limpiamos cookies
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+        HttpContext.Response.Cookies.Delete("Asesor");
+        HttpContext.Response.Cookies.Delete("Modulo");
+        HttpContext.Response.Cookies.Delete("ModuloAsesor");
+
+
+        await _context.SaveChangesAsync();
+        return RedirectToAction("Index", "Empleados");
+    }
 
     [Authorize(Roles = "Asesor")]
-
-
     public async Task <IActionResult> Home()
     {
+        //capturamos cookies
+        var numeroModulo = HttpContext.Request.Cookies["ModuloAsesor"];
         var modulo = HttpContext.Request.Cookies["Modulo"];
+
+        @ViewBag.modulo = numeroModulo;
+
+
         return View(await _context.Turnos.ToListAsync());
+    }
+
+    //Función para llamar al InnerJoin
+    public IActionResult Inner(int usuarioId)
+    {
+        //Llámamos el ServicioInner
+        var inner = _servicios.ServicioInner(usuarioId);
+
+        return View(inner);
     }
 
     public IActionResult Liberar(int id)

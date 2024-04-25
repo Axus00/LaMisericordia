@@ -38,3 +38,5 @@ CREATE TABLE AsignacionTurnos (
     FOREIGN KEY (TurnoId) REFERENCES Turnos(Id)
 );
 
+
+select * from `AsesoresRecepcion`;
