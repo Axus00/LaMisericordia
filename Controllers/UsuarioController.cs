@@ -25,6 +25,12 @@ namespace LaMisericordia.Controllers
         {
             return View();
         }
+        
+        //View User TicketScreen
+        public async Task<IActionResult> TicketScreen()
+        {
+            return View();
+        }
 
     }
 
