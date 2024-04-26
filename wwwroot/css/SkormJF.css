@@ -73,7 +73,7 @@
     width: 20%;
     height: 80px;
     color: var(--white);
-    font-size: 40px;
+    font-size: 36px;
     border-radius: 10px;
     background-image: linear-gradient(to right, #424bae, #009f58);
     box-shadow: 0px 4px 5px rgba(125, 235, 215);
@@ -146,7 +146,7 @@ select, input{
     width: 100%;
     height: 100%;
     display: inline-block;
-    animation: slidermove 240s linear 0s infinite;
+    animation: slidermove 220s linear 0s infinite;
 }
 
 .Fondo1,.Fondo2,.Fondo3,.Fondo4,.Fondo5,.Fondo6,.Fondo7,.Fondo8{
@@ -189,10 +189,18 @@ select, input{
     width: 35%;
     height: 100%;
     overflow-y: scroll;
+    font-size: 40px;
 }
 
 ::-webkit-scrollbar{
     width: 0;
+}
+
+.FondoTabla{
+    z-index: 1;
+    background-image: url("../assets/img/Nubes.jpg");
+    background-size: cover;
+    background-position: center center;
 }
 
 
