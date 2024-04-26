@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using LaMisericordia.Models; 
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using System;
+using System.Speech.Synthesis;
 
 // Definimos el espacio de nombres y la clase para nuestro controlador de empleados
 
@@ -30,10 +32,7 @@ namespace LaMisericordia.Controllers
         }
         
         //View User TicketScreen
-        public async Task<IActionResult> TicketScreen()
-        {
-            return View();
-        }
+        
 
         public IActionResult FormIndex()        
         {
@@ -71,6 +70,14 @@ namespace LaMisericordia.Controllers
             return numeroTurnoActual;
             
         }
+
+
+
+        public async Task<IActionResult> TicketScreen(){
+            
+            return View();
+        }
+
 
     
 
