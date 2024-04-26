@@ -1,0 +1,44 @@
+@model AsesorRecepcion
+@{
+    ViewData["Title"] = "Crear Asesor";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/Admin.css" asp-append-version="true" />
+</head>
+<body>
+    <h1 class="text-center mb-5">Crear Asesor</h1>
+
+    <div class="container">
+        <div class="row rowBox">
+            <div class="col-md-12">
+                <form class="form" method="post" asp-action="Create">
+                    <div class="form-group mb-3">
+                        <label>Correo</label>
+                        <input class="form-control" type="email" placeholder="Ingrese correo..." asp-for="Correo">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Contraseña</label>
+                        <input class="form-control" type="password" placeholder="Ingrese correo..." asp-for="Contrasena">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Modulo</label>
+                        <input class="form-control" type="password" placeholder="Ingrese correo..." asp-for="Modulo">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Tipo de cargo</label>
+                        <select class="form-select" name="Roles" id="">
+                            <option value="Asesor">Asesor</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-sm btn-success" type="submit">Crear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

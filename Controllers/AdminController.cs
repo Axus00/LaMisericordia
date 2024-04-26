@@ -1,5 +1,7 @@
 using LaMisericordia.Data;
 using LaMisericordia.Models;
+using BCrypt.Net;
+using LaMisericordia.Clases;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -9,21 +11,78 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace LaMisericordia.Controllers;
 
+
 public class AdminController : Controller
 {
     private readonly BaseContext _context;
 
-    public AdminController(BaseContext context)
+    private readonly Bcrypt _bcrypt;
+
+    public AdminController(BaseContext context, Bcrypt bcrypt)
     {
         _context = context;
+        _bcrypt = bcrypt;
     }
 
     public IActionResult Index()
     {
+        //guardamos contador de turnos totoales
+        var contadorTurno = _context.Turnos.Count();
+        @ViewBag.contador = contadorTurno;
+
+        //Cantidad de medicamentos
+        var contadorMedicamento = _context.Turnos.Where(m => m.typeServicio.Equals("Medicamento")).Count();
+        @ViewBag.contador2 = contadorMedicamento;
+
+        //Turno General
+        var contadoGeneral = _context.Turnos.Where(g => g.typeServicio.ToLower().Equals("General")).Count();
+        @ViewBag.contadoGeneral = contadoGeneral;
+
+        //Total asesores
+        var contadorAsesor = _context.AsesoresRecepcion.Count();
+        @ViewBag.contadorAsesor = contadorAsesor;
+
+        //Admins
+        var contadorAdmins = _context.AsesoresRecepcion.Where(a => a.Roles.Equals("Admin")).Count();
+        @ViewBag.contadorAdmins = contadorAdmins;
+
+        //Total Usuarios
+        var contadorUsuarios = _context.Usuarios.Count();
+        @ViewBag.contadorUsuarios = contadorUsuarios;
+
         return View();
     }
 
-    public async Task  <IActionResult> Usuarios() // usuarios
+    [Authorize(Roles = "Admin")]
+    //crear Asesores
+    public IActionResult Create()
+    {
+        
+        return View();
+    }
+
+    //Create
+    [HttpPost]
+    public async Task<IActionResult> Create(AsesorRecepcion asesor)
+    {
+        
+        asesor.Contrasena = BCrypt.Net.BCrypt.HashPassword(asesor.Contrasena);
+        _context.AsesoresRecepcion.Add(asesor);
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction("Index", "Empleados");
+    }
+
+
+    [Authorize(Roles = "Admin")]
+    //Details
+    public async Task<IActionResult> Details(int? id)
+    {
+        return View(await _context.AsesoresRecepcion.FirstOrDefaultAsync(a => a.Id == id) );
+    }
+
+
+    public async Task<IActionResult> Usuarios() // usuarios
     {
         return View(await _context.Usuarios.ToListAsync()); // 
     }
@@ -37,7 +96,7 @@ public class AdminController : Controller
 
     }
 
-    public async Task <IActionResult> Turnos()
+    public async Task<IActionResult> Turnos()
     {
         return View(await _context.Turnos.ToListAsync());
     }
@@ -51,7 +110,8 @@ public class AdminController : Controller
         return RedirectToAction("Turnos");
     }
 
-    public async Task <IActionResult> Empleados()
+
+    public async Task<IActionResult> Empleados()
     {
         return View(await _context.AsesoresRecepcion.ToListAsync());
     }

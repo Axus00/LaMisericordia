@@ -20,7 +20,7 @@
 
     <div class="d-flex flex-column justify-content-center align-item-center" style="height: 100%;">
         <div class="row d-flex flex-column justify-content-center align-items-center">
-            <div class="col-md-7 containerInfo text-center d-flex flex-column justify-content-center">
+            <div class="col-md-7 card containerInfo text-center d-flex flex-column justify-content-center">
                 <h2 class="textID mb-4">ID: <span>@ViewBag.user</span></h2>
                 <h2 class="textDate mb-4">Fecha: <span>@ViewBag.FechaActualInicio</span></h2>
                 <h3 class="textName mb-5">CLINICA LA MISERICORDIA</h3>
@@ -28,6 +28,10 @@
                 <h1 class="bold ticket"> 
                     @ViewBag.CodigoTurno
                 </h1>
+                <div class="row d-flex justify-content-center">
+                    <img class="qrGenerator" src="data:image/png;base64,@ViewBag.QRCodeImage" />
+                </div>
+
                 @* <div class="row d-flex justify-content-center mt-2">
                     <a type="button" class="btn btn-primary w-50 btnTurno rounded-5 mt-3" asp-controller="Usuario" asp-action="Index">TOMAR TURNO</a>
                 </div> *@
