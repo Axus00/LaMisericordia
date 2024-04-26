@@ -1,44 +1,117 @@
-<h1>Hola soy Turnos</h1>
+@{
+  ViewData["Title"] = "Turnos";
+}
 
-<br>
-<br>
-<form action="">
-    <input type="text">
-    <button class="btn btn-primary">Search</button>
-</form>
-<br>
-<a class="btn btn-primary">Medicamentos</a>
-<a class="btn btn-info">Pagos</a>
-<a class="btn btn-danger">General</a>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">UsuarioId</th>
-      <th scope="col">tipo de servicio</th>
-      <th scope="col">Codigo</th>
-      <th scope="col">Fecha de inicio</th>
-      <th scope="col">Fecha fin</th>
-      <th scope="col">Estado</th>
-      <th scope="col">Modulo</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach(var Turnos in Model){
-        <tr>
-            <th scope="row">@Turnos.Id</th>
-            <td>@Turnos.UsuariosId</td>
-            <td>@Turnos.typeServicio</td>
-            <td>@Turnos.NameTurno</td>
-            <td>@Turnos.FechaHoraInicio</td>
-            <td>@Turnos.Estado</td>
-            <td>@Turnos.Modulo</td>
-            <td>
-                <button class="btn btn-danger">Eliminar</button>
-            </td>
-        </tr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+</head>
+<body>
+  
+  @section Sidebar{
+      <div class="area"></div>
+        <nav class="main-menu nav">
+            <ul class="d-flex flex-column gap-3">
+              <li class="mt-5">
+                  <a asp-controller="Employees" asp-action="Index">
+                      <i class="fa fa-home fa-2x"></i>
+                      <span class="nav-text">
+                          Inicio
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a asp-controller="Create" asp-action="Index">
+                      
+                      <span class="nav-text">
+                          Usuarios
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a asp-controller="Create" asp-action="Index">
+                      
+                      <span class="nav-text">
+                          Turnos
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a asp-controller="Create" asp-action="Index">
+                      
+                      <span class="nav-text">
+                          Empleados
+                      </span>
+                  </a>
+              </li>
+            </ul>
 
+            <ul class="logout">
+                <li>
+                    <a asp-controller="Login" asp-action="Logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span class="nav-text gap-2">
+                            Logout
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+        </nav>
     }
-  </tbody>
-</table>
+
+  <div class="container">
+    <h1 class="text-center">Listado de Turnos</h1>
+    <div class="row RowTable">
+      <div class="col-md-9">
+        <div class="top d-flex gap-5 mb-4">
+          <form class="form d-flex gap-3" method="get">
+              <input class="form-control" type="text" placeholder="Buscar...">
+              <button class="btn btn-sm btn-primary" type="submit">Search</button>
+          </form>
+          <div class="button d-flex gap-5">
+            <a class="btn btn-sm btn-dark">Medicamentos</a>
+            <a class="btn btn-sm btn-dark">Pagos</a>
+            <a class="btn btn-sm btn-dark">General</a>
+          </div>
+        </div>
+
+
+        <table class="table table-hover table-striped text-center">
+          <thead class="table table-dark text-center">
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">UsuarioId</th>
+              <th scope="col">tipo de servicio</th>
+              <th scope="col">Codigo</th>
+              <th scope="col">Fecha de inicio</th>
+              <th scope="col">Fecha fin</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Modulo</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach(var Turnos in Model){
+                <tr>
+                    <th scope="row">@Turnos.Id</th>
+                    <td>@Turnos.UsuariosId</td>
+                    <td>@Turnos.typeServicio</td>
+                    <td>@Turnos.NameTurno</td>
+                    <td>@Turnos.FechaHoraInicio</td>
+                    <td>@Turnos.Estado</td>
+                    <td>@Turnos.Modulo</td>
+                    <td>
+                        <button class="btn btn-danger">Eliminar</button>
+                    </td>
+                </tr>
+
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

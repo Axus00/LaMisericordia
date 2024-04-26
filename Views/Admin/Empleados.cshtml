@@ -1,34 +1,106 @@
-<h1>Hola soy Empleado</h1>
+@{
+  ViewData["Title"] = "Empleados";
+}
 
-<form action="">
-    <input type="text">
-    <button class="btn btn-primary">Search</button>
-</form>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">Correo</th>
-      <th scope="col">Contraseña</th>
-      <th scope="col">Modulo</th>
-      <th scope="col">Tipo de empleado</th>
-      <th scope="col">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach(var AsseorRecepcion in Model){
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+</head>
+<body>
 
-        <tr>
-            <th scope="row">@AsseorRecepcion.Id</th>
-            <td>@AsseorRecepcion.Correo</td>
-            <td>@AsseorRecepcion.Contrasena</td>
-            <td>@AsseorRecepcion.Modulo</td>
-            <td></td>
-            <td>
-                <a class="btn btn-danger">Eliminar</a>
-                <a class="btn btn-primary">Editar</a>
-            </td>
-        </tr>
-    }
-  </tbody>
-</table>
+  @section Sidebar{
+    <div class="area"></div>
+        <nav class="main-menu nav">
+            <ul class="d-flex flex-column gap-3">
+              <li class="mt-5">
+                  <a asp-controller="Employees" asp-action="Index">
+                      <i class="fa fa-home fa-2x"></i>
+                      <span class="nav-text">
+                          Inicio
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a asp-controller="Create" asp-action="Index">
+                      
+                      <span class="nav-text">
+                          Usuarios
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a asp-controller="Create" asp-action="Index">
+                      
+                      <span class="nav-text">
+                          Turnos
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a asp-controller="Create" asp-action="Index">
+                      
+                      <span class="nav-text">
+                          Empleados
+                      </span>
+                  </a>
+              </li>
+            </ul>
+
+            <ul class="logout">
+                <li>
+                   <a asp-controller="Login" asp-action="Logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span class="nav-text gap-2">
+                            Logout
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+        </nav>
+  }
+
+  <div class="container">
+    <div class="row RowTable">
+      <div class="col-md-9">
+        <h1 class="text-center mb-3 mt-3">Empleados</h1>
+
+        <form class="form d-flex gap-3 mb-3" method="get">
+            <input class="form-control" type="text" placeholder="Ingrese Empleado...">
+            <button class="btn btn-primary">Search</button>
+        </form>
+        <table class="table table-hover table-striped text-center">
+          <thead class="table table-dark text-center">
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Contraseña</th>
+              <th scope="col">Modulo</th>
+              <th scope="col">Tipo de empleado</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach(var AsseorRecepcion in Model){
+
+                <tr>
+                    <th scope="row">@AsseorRecepcion.Id</th>
+                    <td>@AsseorRecepcion.Correo</td>
+                    <td>@AsseorRecepcion.Contrasena</td>
+                    <td>@AsseorRecepcion.Modulo</td>
+                    <td></td>
+                    <td>
+                        <a class="btn btn-sm btn-dark text-danger">Eliminar</a>
+                        <a class="btn btn-sm btn-dark text-success">Editar</a>
+                    </td>
+                </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+
