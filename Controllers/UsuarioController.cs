@@ -115,6 +115,12 @@ namespace LaMisericordia.Controllers
             
         }
 
+
+        public async Task<IActionResult> TicketScreen(){
+            
+            return View();
+        }
+
         [HttpPost]
         public IActionResult ReiniciarTurno()
         {
@@ -156,16 +162,6 @@ namespace LaMisericordia.Controllers
 
             return RedirectToAction(nameof(OptionIndex)); 
         }
-
-
-
-        public async Task<IActionResult> TicketScreen(){
-            
-            return View();
-        }
-
-
-    
 
     }
 
