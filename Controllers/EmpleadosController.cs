@@ -12,7 +12,7 @@ using System.Speech.Synthesis;
 
 namespace LaMisericordia.Controllers;
 
-[Authorize(Roles = "Admin, Asesor")]
+//[Authorize(Roles = "Admin, Asesor")]
 public class EmpleadosController : Controller
 {
     private readonly BaseContext _context;

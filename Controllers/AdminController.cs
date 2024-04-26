@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace LaMisericordia.Controllers;
 
-[Authorize(Roles = "Admin")]
+//[Authorize(Roles = "Admin")]
 public class AdminController : Controller
 {
     private readonly BaseContext _context;
@@ -33,6 +33,10 @@ public class AdminController : Controller
         //Cantidad de medicamentos
         var contadorMedicamento = _context.Turnos.Where(m => m.typeServicio.Equals("Medicamento")).Count();
         @ViewBag.contador2 = contadorMedicamento;
+
+        //Turno General
+        var contadoGeneral = _context.Turnos.Where(g => g.typeServicio.ToLower().Equals("General")).Count();
+        @ViewBag.contadoGeneral = contadoGeneral;
 
         //Total asesores
         var contadorAsesor = _context.AsesoresRecepcion.Count();
