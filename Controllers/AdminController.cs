@@ -96,15 +96,6 @@ public class AdminController : Controller
 
     }
 
-    public IActionResult DeleteUser(int? id)
-    {
-        var User = _context.Usuarios.FirstOrDefault(d => d.Id == id);
-        _context.Usuarios.Remove(User);
-        _context.SaveChanges();
-        return RedirectToAction("Usuarios");
-
-    }
-
     public async Task<IActionResult> Turnos()
     {
         return View(await _context.Turnos.ToListAsync());
@@ -119,14 +110,6 @@ public class AdminController : Controller
         return RedirectToAction("Turnos");
     }
 
-    public IActionResult DeleteTurnos(int? id)
-    {
-        var Turno = _context.Turnos.FirstOrDefault(d => d.Id == id);
-
-        _context.Turnos.Remove(Turno);
-        _context.SaveChanges();
-        return RedirectToAction("Turnos");
-    }
 
     public async Task<IActionResult> Empleados()
     {
