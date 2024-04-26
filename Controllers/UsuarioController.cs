@@ -107,17 +107,12 @@ namespace LaMisericordia.Controllers
             
         }
 
-<<<<<<<<< Temporary merge branch 1
-
 
         public async Task<IActionResult> TicketScreen(){
             
             return View();
         }
 
-
-    
-=========
         [HttpPost]
         public IActionResult ReiniciarTurno()
         {
@@ -159,8 +154,6 @@ namespace LaMisericordia.Controllers
 
             return RedirectToAction(nameof(OptionIndex)); 
         }
-
->>>>>>>>> Temporary merge branch 2
 
     }
 
