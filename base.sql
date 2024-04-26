@@ -80,6 +80,7 @@ values
 ("Juan@adminlamisericordia.com", "juan123", "N/A", '["Admin"]');
 truncate table Turnos;
 
+
 truncate table AsesoresRecepcion;
 #foreign key
 # FOREIGN KEY (UsuariosId) REFERENCES Usuarios(Id);

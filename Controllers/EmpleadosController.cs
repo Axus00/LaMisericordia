@@ -12,6 +12,7 @@ using System.Speech.Synthesis;
 
 namespace LaMisericordia.Controllers;
 
+
 public class EmpleadosController : Controller
 {
     private readonly BaseContext _context;
@@ -99,16 +100,15 @@ public class EmpleadosController : Controller
         return RedirectToAction("Index", "Empleados");
     }
 
-    [Authorize(Roles = "Asesor")]
     public async Task <IActionResult> Home()
     {
-        var contadorTurno = _context.Turnos.Count();
+        
         //capturamos cookies
         var numeroModulo = HttpContext.Request.Cookies["ModuloAsesor"];
         var modulo = HttpContext.Request.Cookies["Modulo"];
 
         @ViewBag.modulo = numeroModulo;
-        @ViewBag.contador = contadorTurno;
+        
 
 
         return View(await _context.Turnos.ToListAsync());

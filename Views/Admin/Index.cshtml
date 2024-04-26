@@ -5,12 +5,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+    <link rel="stylesheet" href="~/css/Admin.css" asp-append-version="true" />
 </head>
 <body>
       @section Sidebar{
       <div class="area"></div>
         <nav class="main-menu nav">
+            <div class="image">
+                <img src="~/assets/img/Fondo.jpg" alt="logo" width="50px" height="50px">
+            </div>
             <ul class="d-flex flex-column gap-3">
               <li class="mt-5">
                   <a asp-controller="Employees" asp-action="Index">
@@ -48,7 +51,7 @@
 
             <ul class="logout">
                 <li>
-                    <a asp-controller="Login" asp-action="Logout">
+                    <a asp-controller="Empleados" asp-action="Index">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span class="nav-text gap-2">
                             Logout
@@ -61,12 +64,13 @@
 
     <!--Cartas-->
     <div class="container mt-5">
+        <h1 class="text-center">CRM La Misericordia</h1>
         <div class="row RowTable">
             <div class="col-3 mb-5">
                 <div class="card">
                     <div class="card-body">
                         <h2 class="text-dark text-center">Turnos Totales</h2>
-                        <p class="text-center">12</p>
+                        <p class="text-center">@ViewBag.Contador</p>
                     </div>
                 </div>
             </div>
@@ -74,7 +78,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="text-dark text-center">Medicamentos</h2>
-                        <p class="text-center">11</p>
+                        <p class="text-center">@ViewBag.contador2</p>
                     </div>
                 </div>
             </div>
@@ -106,7 +110,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="text-dark text-center">Admin</h2>
-                        <p class="text-center">11</p>
+                        <p class="text-center">@ViewBag.contadorAdmins</p>
                     </div>
                 </div>
             </div>
@@ -114,7 +118,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="text-dark text-center">Empleados</h2>
-                        <p class="text-center">11</p>
+                        <p class="text-center">@ViewBag.contadorAsesor</p>
                     </div>
                 </div>
             </div>
@@ -122,7 +126,19 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="text-dark text-center">Usuarios</h2>
-                        <p class="text-center">11</p>
+                        <p class="text-center">@ViewBag.contadorUsuarios</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-lg-5">
+            <div class="row RowTable">
+                <div class="col-md-12">
+                    <div class="card h-100">
+                        <div class="card-body">
+
+                        </div>
                     </div>
                 </div>
             </div>
