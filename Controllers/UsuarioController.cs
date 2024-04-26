@@ -28,7 +28,10 @@ namespace LaMisericordia.Controllers
         }
         
         //View User TicketScreen
-        
+        public async Task<IActionResult> TicketScreen()
+        {
+            return View(await _BaseContext.Turnos.ToListAsync());
+        }
 
         public IActionResult FormIndex()        
         {
@@ -115,11 +118,6 @@ namespace LaMisericordia.Controllers
             
         }
 
-
-        public async Task<IActionResult> TicketScreen(){
-            
-            return View();
-        }
 
         [HttpPost]
         public IActionResult ReiniciarTurno()

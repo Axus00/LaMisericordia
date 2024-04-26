@@ -86,7 +86,7 @@
                   <td>@Usuarios.DocumentoIdentidad</td>
                   <td>Otto</td>
                   <td>
-                      <button class="btn btn-danger">Delete</button>
+                      <button class="btn btn-danger" asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@Usuarios.Id">Delete</button>
                   </td>
               </tr>
 
