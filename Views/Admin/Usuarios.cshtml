@@ -1,24 +1,101 @@
-<h1>Hola soy Usuarios</h1>
+@{
+  ViewData["Title"] = "Usuarios";
+}
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Documento</th>
-      <th scope="col">Tipo de Documento</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach(var Usuarios in Model){
-        <tr>
-            <th scope="row">@Usuarios.Id</th>
-            <td>@Usuarios.DocumentoIdentidad</td>
-            <td>Otto</td>
-            <td>
-                <button class="btn btn-danger">Delete</button>
-            </td>
-        </tr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+</head>
+<body>
 
+    @section Sidebar{
+      <div class="area"></div>
+        <nav class="main-menu nav">
+            <ul class="d-flex flex-column gap-3">
+              <li class="mt-5">
+                  <a asp-controller="Employees" asp-action="Index">
+                      <i class="fa fa-home fa-2x"></i>
+                      <span class="nav-text">
+                          Inicio
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a asp-controller="Create" asp-action="Index">
+                      
+                      <span class="nav-text">
+                          Usuarios
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a asp-controller="Create" asp-action="Index">
+                      
+                      <span class="nav-text">
+                          Turnos
+                      </span>
+                  </a>
+              </li>
+              <li>
+                  <a asp-controller="Create" asp-action="Index">
+                      
+                      <span class="nav-text">
+                          Empleados
+                      </span>
+                  </a>
+              </li>
+            </ul>
+
+            <ul class="logout">
+                <li>
+                    <a asp-controller="Login" asp-action="Logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span class="nav-text gap-2">
+                            Logout
+                        </span>
+                    </a>
+                </li>  
+            </ul>
+        </nav>
     }
-  </tbody>
-</table>
+
+<div class="container">
+  <h1 class="text-center">Usuarios</h1>
+  <div class="row RowTable">
+    <div class="col-md-9">
+
+      <form class="form d-flex gap-3 mb-3" method="get">
+            <input class="form-control" type="text" placeholder="Buscar...">
+            <button class="btn btn-sm btn-primary" type="submit">Search</button>
+      </form>
+
+      <table class="table table-hover table-striped text-center">
+        <thead class="table table-dark text-center">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Documento</th>
+            <th scope="col">Atención Preferencial</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach(var Usuarios in Model){
+              <tr>
+                  <th scope="row">@Usuarios.Id</th>
+                  <td>@Usuarios.DocumentoIdentidad</td>
+                  <td>Otto</td>
+                  <td>
+                      <button class="btn btn-danger">Delete</button>
+                  </td>
+              </tr>
+
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

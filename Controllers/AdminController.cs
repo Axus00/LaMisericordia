@@ -23,9 +23,9 @@ public class AdminController : Controller
         return View();
     }
 
-    public async Task  <IActionResult> Usuarios()
+    public async Task  <IActionResult> Usuarios() // usuarios
     {
-        return View(await _context.Usuarios.ToListAsync());
+        return View(await _context.Usuarios.ToListAsync()); // 
     }
 
     public async Task <IActionResult> Turnos()
