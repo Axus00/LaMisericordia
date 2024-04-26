@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication;
 using System;
 using System.Speech.Synthesis;
 
+
 // Definimos el espacio de nombres y la clase para nuestro controlador de empleados
 
 namespace LaMisericordia.Controllers 
@@ -34,6 +35,7 @@ namespace LaMisericordia.Controllers
         //View User TicketScreen
         public async Task<IActionResult> TicketScreen()
         {
+            await Task.Delay(1000);
             return View(await _BaseContext.Turnos.ToListAsync());
         }
 
@@ -152,6 +154,10 @@ namespace LaMisericordia.Controllers
 
             return RedirectToAction(nameof(OptionIndex)); 
         }
+
+
+       
+
 
     }
 

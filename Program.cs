@@ -37,6 +37,8 @@ builder.Services.AddSession(options => {
 //servicio para Inner
 builder.Services.AddScoped<Servicios>();
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
