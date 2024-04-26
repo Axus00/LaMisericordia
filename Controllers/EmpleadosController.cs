@@ -128,7 +128,7 @@ public class EmpleadosController : Controller
 
         var turno = _context.Turnos.FirstOrDefault(t => t.Id == id);
         turno.Estado = "Finalizado";
-        turno.FechaHoraFin =DateTime.Now;
+        turno.FechaHoraFin = DateTime.Now;
         _context.Turnos.Update(turno);
         _context.SaveChanges();
         return RedirectToAction("Home");
