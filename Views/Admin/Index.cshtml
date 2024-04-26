@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/Admin.css" asp-append-version="true" />
 </head>
 <body>
-      @section Sidebar{
+    @section Sidebar{
       <div class="area"></div>
         <nav class="main-menu nav">
             <div class="image">
@@ -16,7 +16,7 @@
             </div>
             <ul class="d-flex flex-column gap-3">
               <li class="mt-5">
-                  <a asp-controller="Employees" asp-action="Index">
+                  <a asp-controller="Empleados" asp-action="Home">
                       <i class="fa fa-home fa-2x"></i>
                       <span class="nav-text">
                           Inicio
@@ -24,7 +24,7 @@
                   </a>
               </li>
               <li>
-                  <a asp-controller="Create" asp-action="Index">
+                  <a asp-controller="Admin" asp-action="Usuarios">
                       
                       <span class="nav-text">
                           Usuarios
@@ -32,7 +32,7 @@
                   </a>
               </li>
               <li>
-                  <a asp-controller="Create" asp-action="Index">
+                  <a asp-controller="Admin" asp-action="Turnos">
                       
                       <span class="nav-text">
                           Turnos
@@ -40,7 +40,7 @@
                   </a>
               </li>
               <li>
-                  <a asp-controller="Create" asp-action="Index">
+                  <a asp-controller="Admin" asp-action="Empleados">
                       
                       <span class="nav-text">
                           Empleados

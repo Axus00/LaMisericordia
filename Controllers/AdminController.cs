@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace LaMisericordia.Controllers;
 
-//[Authorize(Roles = "Admin")]
+
 public class AdminController : Controller
 {
     private readonly BaseContext _context;
@@ -53,6 +53,7 @@ public class AdminController : Controller
         return View();
     }
 
+    [Authorize(Roles = "Admin")]
     //crear Asesores
     public IActionResult Create()
     {
@@ -73,6 +74,7 @@ public class AdminController : Controller
     }
 
 
+    [Authorize(Roles = "Admin")]
     //Details
     public async Task<IActionResult> Details(int? id)
     {

@@ -14,7 +14,7 @@
         <nav class="main-menu nav">
             <ul class="d-flex flex-column gap-3">
               <li class="mt-5">
-                  <a asp-controller="Employees" asp-action="Index">
+                  <a asp-controller="Empleados" asp-action="Home">
                       <i class="fa fa-home fa-2x"></i>
                       <span class="nav-text">
                           Inicio
@@ -22,7 +22,7 @@
                   </a>
               </li>
               <li>
-                  <a asp-controller="Create" asp-action="Index">
+                  <a asp-controller="Admin" asp-action="Usuarios">
                       
                       <span class="nav-text">
                           Usuarios
@@ -30,7 +30,7 @@
                   </a>
               </li>
               <li>
-                  <a asp-controller="Create" asp-action="Index">
+                  <a asp-controller="Admin" asp-action="Turnos">
                       
                       <span class="nav-text">
                           Turnos
@@ -38,7 +38,7 @@
                   </a>
               </li>
               <li>
-                  <a asp-controller="Create" asp-action="Index">
+                  <a asp-controller="Admin" asp-action="Empleados">
                       
                       <span class="nav-text">
                           Empleados
@@ -49,7 +49,7 @@
 
             <ul class="logout">
                 <li>
-                   <a asp-controller="Login" asp-action="Logout">
+                   <a asp-controller="Empleados" asp-action="Index">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span class="nav-text gap-2">
                             Logout
@@ -89,9 +89,9 @@
                     <td>@AsseorRecepcion.Contrasena</td>
                     <td>@AsseorRecepcion.Modulo</td>
                     <td></td>
-                    <td>
-                        <a class="btn btn-sm btn-dark text-danger">Eliminar</a>
-                        <a class="btn btn-sm btn-dark text-success">Editar</a>
+                    <td class="d-flex gap-3">
+                        <a class="btn btn-sm btn-dark">Eliminar</a>
+                        <a class="btn btn-sm btn-dark">Editar</a>
                         <a class="btn btn-success" asp-controller="Admin" asp-action="Details" asp-route-id="@AsseorRecepcion.Id">Detalles</a>
                     </td>
                 </tr>
