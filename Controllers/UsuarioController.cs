@@ -60,13 +60,13 @@ namespace LaMisericordia.Controllers
             string service = "";
             string codigoTurno = "";
 
-            if (servicio == "MC"){
-                codigoTurno = "MC" + numeroTurno.ToString().PadLeft(3, '0');
-                service = "Medicamentos";
+            if (servicio == "SM"){
+                codigoTurno = "SM" + numeroTurno.ToString().PadLeft(3, '0');
+                service = "Solicitar Medicamento";
                 selectModulo = 1;
             }
-            else if (servicio == "SM") {
-                codigoTurno = "SM" + numeroTurno.ToString().PadLeft(3, '0');
+            else if (servicio == "VF") {
+                codigoTurno = "VF" + numeroTurno.ToString().PadLeft(3, '0');
                 service = "Realizar Pagos";
                 selectModulo = 2;
             }
@@ -100,7 +100,7 @@ namespace LaMisericordia.Controllers
             {
                 UsuariosId = Convert.ToInt32(HttpContext.Request.Cookies["userId"]),
                 Estado = "En espera",
-                typeServicio = servicio,
+                typeServicio = service,
                 NameTurno = codigoTurno, 
                 FechaHoraInicio = fechaActualInicio,
                 Modulo = selectModulo.ToString()
