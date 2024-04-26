@@ -1,5 +1,6 @@
 using LaMisericordia.Data;
 using LaMisericordia.Models;
+using BCrypt.Net;
 using LaMisericordia.Clases;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace LaMisericordia.Controllers;
 
-
+[Authorize(Roles = "Admin")]
 public class AdminController : Controller
 {
     private readonly BaseContext _context;
@@ -55,16 +56,25 @@ public class AdminController : Controller
         return View();
     }
 
-
+    //Create
     [HttpPost]
-    public async Task<IActionResult> Create(AsesorRecepcion asesor, string contrasena)
+    public async Task<IActionResult> Create(AsesorRecepcion asesor)
     {
-        string hashedContrasena = _bcrypt.HashContrasena(contrasena);
+        
+        asesor.Contrasena = BCrypt.Net.BCrypt.HashPassword(asesor.Contrasena);
         _context.AsesoresRecepcion.Add(asesor);
         await _context.SaveChangesAsync();
 
-        return RedirectToAction("Index", "Admin");
+        return RedirectToAction("Index", "Empleados");
     }
+
+
+    //Details
+    public async Task<IActionResult> Details(int? id)
+    {
+        return View(await _context.AsesoresRecepcion.FirstOrDefaultAsync(a => a.Id == id) );
+    }
+
 
     public async Task<IActionResult> Usuarios() // usuarios
     {

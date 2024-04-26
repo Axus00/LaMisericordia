@@ -14,7 +14,8 @@
         @if(User.IsInRole("Admin"))
         {
             <a class="btn btn-xm btn-dark mb-3 mt-3" asp-controller="Admin" asp-action="Index">CRM</a>
-            <a class="btn btn-xm btn-dark mb-3 mt-3" asp-controller="Admin" asp-action="Create">Crear Asesor</a>   
+            <a class="btn btn-xm btn-dark mb-3 mt-3" asp-controller="Admin" asp-action="Create">Crear Asesor</a>
+            <a class="btn btn-xm btn-dark mb-3 mt-3" asp-controller="Admin" asp-action="Empleados">Listado de Asesores</a>
         }
         <h1 class="text-center mb-4">Asesor del Módulo # @ViewBag.modulo</h1>    
     </div>

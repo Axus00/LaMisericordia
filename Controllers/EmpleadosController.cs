@@ -12,7 +12,7 @@ using System.Speech.Synthesis;
 
 namespace LaMisericordia.Controllers;
 
-
+[Authorize(Roles = "Admin, Asesor")]
 public class EmpleadosController : Controller
 {
     private readonly BaseContext _context;
@@ -37,9 +37,9 @@ public class EmpleadosController : Controller
 
     //Login
     [HttpPost]
-    public async Task<IActionResult> Login(string correo, string contrasena, string password)
+    public async Task<IActionResult> Login(string correo, string Contrasena)
     {
-        var asesor = await _context.AsesoresRecepcion.FirstOrDefaultAsync(a => a.Correo == correo && a.Contrasena == password);
+        var asesor = await _context.AsesoresRecepcion.FirstOrDefaultAsync(a => a.Correo == correo);
         string hashedContrasena = asesor.Contrasena;     
 
         //Inicio configuración cookie para los roles
@@ -82,7 +82,7 @@ public class EmpleadosController : Controller
             
 
             //agregamos verificación de password
-            if(_bcrypt.verifyContrasena(contrasena, hashedContrasena))
+            if(_bcrypt.verifyContrasena(Contrasena,hashedContrasena))
             {
                 //Guardamos y redireccionamos
                 _context.SaveChanges();
@@ -117,6 +117,7 @@ public class EmpleadosController : Controller
         return RedirectToAction("Index", "Empleados");
     }
 
+    [Authorize(Roles = "Admin, Asesor")]
     public async Task <IActionResult> Home()
     {
         
