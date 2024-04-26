@@ -119,6 +119,8 @@ namespace LaMisericordia.Controllers
         }
 
 
+       
+
         [HttpPost]
         public IActionResult ReiniciarTurno()
         {
