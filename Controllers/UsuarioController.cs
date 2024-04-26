@@ -47,20 +47,24 @@ namespace LaMisericordia.Controllers
         {
             await Task.Delay(TimeSpan.FromSeconds(3));
             int numeroTurno = ObtenerNumeroTurno(); 
+            int selectModulo;
             string service = "";
             string codigoTurno = "";
 
             if (servicio == "MC"){
-                codigoTurno = servicio + "MC".PadLeft(3, '0');
+                codigoTurno = "MC" + numeroTurno.ToString().PadLeft(3, '0');
                 service = "Medicamentos";
+                selectModulo = 1;
             }
             else if (servicio == "SM") {
-                codigoTurno = servicio + "SM".PadLeft(3, '0');
+                codigoTurno = "SM" + numeroTurno.ToString().PadLeft(3, '0');
                 service = "Realizar Pagos";
+                selectModulo = 2;
             }
             else {
-                codigoTurno = servicio + "SC".PadLeft(3, '0');
+                codigoTurno = "SC" + numeroTurno.ToString().PadLeft(3, '0');
                 service = "Cita General";
+                selectModulo = 3;
             }
 
             DateTime fechaActualInicio = DateTime.Now; 
@@ -77,6 +81,7 @@ namespace LaMisericordia.Controllers
                 typeServicio = servicio,
                 NameTurno = codigoTurno, 
                 FechaHoraInicio = fechaActualInicio,
+                Modulo = selectModulo.ToString()
             };
 
             ViewBag.user = HttpContext.Request.Cookies["numeroDocumento"];
