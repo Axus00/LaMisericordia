@@ -34,7 +34,14 @@ namespace LaMisericordia.Controllers
         //View User TicketScreen
         public async Task<IActionResult> TicketScreen()
         {
+            await RecargarPagina();
             return View(await _BaseContext.Turnos.ToListAsync());
+
+        }
+
+        public async Task RecargarPagina(){
+            await Task.Delay(TimeSpan.FromSeconds(0));
+            RedirectToAction("TicketScreen");
         }
 
         public IActionResult FormIndex()        
