@@ -1,31 +1,63 @@
+@model Usuario
+
 <head>
     <link rel="stylesheet" href="~/css/SkormJF.css" />
 </head>
 
-<section class="Main">
-    <div class="Background"></div>
-    <div class="DataContainer">
-        <h1>Ingresa tu documento</h1>
-        <select class="form-select form-select-lg mb-3" >
-            <option disabled selected>Selecciona tu tipo de documento</option>
-            <option value="1">Cedula</option>
-            <option value="2">Tarjeta de identidad</option>
-            <option value="3">Pasaporte</option>
-        </select>
-        <input type="text" class="form-control form-select-lg">
-    </div>
-    <div class="ButtonsForm">
-        <button class="Buttons">1</button>
-        <button class="Buttons">2</button>
-        <button class="Buttons">3</button>
-        <button class="Buttons">4</button>
-        <button class="Buttons">5</button>
-        <button class="Buttons">6</button>
-        <button class="Buttons">7</button>
-        <button class="Buttons">8</button>
-        <button class="Buttons">9</button>
-        <a class="Buttons" asp-controller="usuario" asp-action="optionindex">Enviar</a>
-        <button class="Buttons">0</button>
-        <button class="Buttons">Borrar</button>
-    </div>
-</section>
+<form asp-controller="Usuario" asp-action="UpInfoUser" method="post">
+    <section class="Main">
+
+        <div class="Background"></div>
+            <div class="DataContainer">
+                <h1>Ingresa tu documento</h1>
+                <select class="form-select  mb-3" name="tipoDocumento">
+                    <option disabled selected>Selecciona tu tipo de documento</option>
+                    <option value="Cedula">Cedula</option>
+                    <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+                    <option value="Pasaporte">Pasaporte</option>
+                </select>
+                <input type="text" id="input" name="numeroDocumento" class="form-control form-select-lg">
+            </div>
+            <div class="ButtonsForm">
+                <input type="button" class="Buttons" value="1" name="" onclick="llenar(1)">
+                <input type="button" class="Buttons" value="2" name="" onclick="llenar(2)">
+                <input type="button" class="Buttons" value="3" name="" onclick="llenar(3)">
+                <input type="button" class="Buttons" value="4" name="" onclick="llenar(4)">
+                <input type="button" class="Buttons" value="5" name="" onclick="llenar(5)">
+                <input type="button" class="Buttons" value="6" name="" onclick="llenar(6)">
+                <input type="button" class="Buttons" value="7" name="" onclick="llenar(7)">
+                <input type="button" class="Buttons" value="8" name="" onclick="llenar(8)">
+                <input type="button" class="Buttons" value="9" name="" onclick="llenar(8)">
+                <input type="button" class="Buttons" value="Borrar" name="" onclick="remover()">
+                <input type="button" class="Buttons" value="0" name="" onclick="llenar(0)">
+                <button>Enviar</button>
+            </div>
+            
+    </section>
+</form>
+                @* <a class="linkEnviar" asp-controller="usuario" asp-action="OptionIndex" style="z-index: 1;">ENVIAR</a> *@
+
+
+
+<script>
+    const input = document.getElementById("input");
+    let texto = "";
+
+
+    function llenar(valor){
+        texto += valor;
+        input.value = texto;
+    }
+
+    function remover(){
+        texto = texto.slice(0, -1);
+        input.value = texto;
+    }
+
+    function Limpiar(){
+        texto = "";
+        input.value = texto;
+    }
+</script>
+
+
