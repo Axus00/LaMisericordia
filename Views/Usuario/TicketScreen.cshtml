@@ -2,6 +2,13 @@
     ViewData["Title"] = "TicketScreen";
 }
 
+@{
+    if(TempData ["Update"] != null){
+        <div class="alert alert-success mt-3" role="alert">
+            @TempData["Update"]
+        </div>
+    }
+}
 
 <head>
     <link rel="stylesheet" href="~/css/SkormJF.css" />
@@ -12,6 +19,7 @@
         <figure class="slider-move">
             <img class="Fondo1"></img>
             <img class="Fondo2"></img>
+    using Microsoft.EntityFrameworkCore.Metadata.Internal;
             <img class="Fondo3"></img>
             <img class="Fondo4"></img>
             <img class="Fondo5"></img>
@@ -41,14 +49,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>IG01</td>
-                            <td>01</td>
-                        </tr>
-                        <tr>
-                            <td>MD10</td>
-                            <td>03</td>
-                        </tr>
+                        @foreach(var Turnos in Model){
+                            if(@Turnos.Estado ==  "En proceso"){
+
+                                <tr>
+                                    <td>@Turnos.NameTurno</td>
+                                    <td>@Turnos.Modulo</td>
+                                </tr>
+                            }
+                        }
                     </tbody>
                 </table>
             </div>

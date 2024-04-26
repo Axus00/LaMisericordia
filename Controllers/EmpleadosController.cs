@@ -115,6 +115,7 @@ public class EmpleadosController : Controller
         turno.Estado = "En proceso";
         turno.Modulo = modulo;
         turno.FechaHoraFin = DateTime.Now;
+        TempData ["Update"] = "Se ha Agregado un nuevo turno";
 
         _context.Turnos.Update(turno);
         _context.SaveChanges();
