@@ -41,20 +41,56 @@ namespace LaMisericordia.Controllers
         {
             return View();
         }
-        public ActionResult OptionIndex()
+        public async Task<ActionResult> OptionIndex()
         {
+            var usuario = await _BaseContext.Usuarios.FirstOrDefaultAsync();
             return View();
         }
 
         public async Task<ActionResult> Ticket(string servicio)
         {
+            await Task.Delay(TimeSpan.FromSeconds(3));
             int numeroTurno = ObtenerNumeroTurno(); 
+            int selectModulo;
+            string service = "";
+            string codigoTurno = "";
 
-            string codigoTurno = servicio + numeroTurno.ToString().PadLeft(3, '0');
+            if (servicio == "MC"){
+                codigoTurno = "MC" + numeroTurno.ToString().PadLeft(3, '0');
+                service = "Medicamentos";
+                selectModulo = 1;
+            }
+            else if (servicio == "SM") {
+                codigoTurno = "SM" + numeroTurno.ToString().PadLeft(3, '0');
+                service = "Realizar Pagos";
+                selectModulo = 2;
+            }
+            else {
+                codigoTurno = "SC" + numeroTurno.ToString().PadLeft(3, '0');
+                service = "Cita General";
+                selectModulo = 3;
+            }
 
+            DateTime fechaActualInicio = DateTime.Now; 
+            
             ViewBag.CodigoTurno = codigoTurno;
 
-            // _BaseContext.Turnos.Add(codigoTurno);
+            ViewBag.FechaActualInicio = fechaActualInicio;
+
+
+            var nuevoTurno = new Turno
+            {
+                UsuariosId = Convert.ToInt32(HttpContext.Request.Cookies["userId"]),
+                Estado = "En espera",
+                typeServicio = servicio,
+                NameTurno = codigoTurno, 
+                FechaHoraInicio = fechaActualInicio,
+                Modulo = selectModulo.ToString()
+            };
+
+            ViewBag.user = HttpContext.Request.Cookies["numeroDocumento"];
+
+            _BaseContext.Turnos.Add(nuevoTurno);
 
             await _BaseContext.SaveChangesAsync();
 
@@ -75,11 +111,47 @@ namespace LaMisericordia.Controllers
         }
 
 
+        [HttpPost]
+        public IActionResult ReiniciarTurno()
+        {
 
-       
+            Response.Cookies.Append("NumeroTurno", "0");
 
+            return RedirectToAction("Ticket"); 
+            
+        }
 
-    
+        [HttpPost]
+        public async Task<IActionResult> UpInfoUser(string tipoDocumento, string numeroDocumento)
+        {
+            Response.Cookies.Append("numeroDocumento", numeroDocumento);
+
+            var nuevoUsuario = new Usuario
+            {
+                DocumentoIdentidad = numeroDocumento,
+                typeDocument = tipoDocumento
+            };
+
+            ViewBag.numDocumento = numeroDocumento;
+            ViewBag.tipoDocumento = tipoDocumento;
+
+            _BaseContext.Usuarios.Add(nuevoUsuario); 
+            await _BaseContext.SaveChangesAsync(); 
+
+            var usuarioGuardado = await _BaseContext.Usuarios.FirstOrDefaultAsync(u => u.DocumentoIdentidad == numeroDocumento);
+            
+            if (usuarioGuardado != null)
+            {
+                int userId = usuarioGuardado.Id;
+                Response.Cookies.Append("userId", userId.ToString());
+            }
+            else
+            {
+                ViewBag.IDuser = "Usuario no encontrado";
+            }
+
+            return RedirectToAction(nameof(OptionIndex)); 
+        }
 
     }
 
