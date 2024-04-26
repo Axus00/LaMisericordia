@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Speech.Synthesis;
 
 namespace LaMisericordia.Controllers;
 
@@ -78,7 +80,7 @@ public class EmpleadosController : Controller
 
 
     public async Task <IActionResult> Home()
-    {
+    {   
         var modulo = HttpContext.Request.Cookies["Modulo"];
         return View(await _context.Turnos.ToListAsync());
     }
@@ -139,6 +141,26 @@ public class EmpleadosController : Controller
     {
         var General = _context.Turnos.Where(c => c.typeServicio == "General");
         return View("Home",await General.ToListAsync());
+    }
+
+    public async Task<IActionResult> Llamar(int id){
+        var llamado = _context.Turnos.FirstOrDefault(d => d.Id == id);
+        await RepetirTurno(llamado.NameTurno);
+        return RedirectToAction("Home");
+    }
+    private async Task RepetirTurno(string Turno)
+    {
+        //Primera llamada
+        await Task.Delay(TimeSpan.FromSeconds(0));
+        Speak(Turno);
+        //Segunda llamada
+        await Task.Delay(TimeSpan.FromSeconds(2));
+        Speak(Turno);
+    }
+    private void Speak(string Turno)
+    {
+        var VozTurno = new SpeechSynthesizer();
+        VozTurno.SpeakAsync(Turno);
     }
 
     

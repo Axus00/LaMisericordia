@@ -31,10 +31,7 @@ namespace LaMisericordia.Controllers
         }
         
         //View User TicketScreen
-        public async Task<IActionResult> TicketScreen()
-        {
-            return View();
-        }
+        
 
         public IActionResult FormIndex()        
         {
@@ -146,6 +143,15 @@ namespace LaMisericordia.Controllers
             return RedirectToAction(nameof(OptionIndex)); 
         }
 
+
+
+        public async Task<IActionResult> TicketScreen(){
+            
+            return View();
+        }
+
+
+    
 
     }
 
