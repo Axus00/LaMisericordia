@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using LaMisericordia.Models; 
 using QRCoder;
 
+
 // Definimos el espacio de nombres y la clase para nuestro controlador de empleados
 
 namespace LaMisericordia.Controllers 
@@ -169,6 +170,10 @@ namespace LaMisericordia.Controllers
 
             return RedirectToAction(nameof(OptionIndex)); 
         }
+
+
+       
+
 
     }
 

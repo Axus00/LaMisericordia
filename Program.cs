@@ -41,6 +41,8 @@ builder.Services.AddScoped<Servicios>();
 //Agregamos servicio BCrypt
 builder.Services.AddScoped<Bcrypt>();
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
