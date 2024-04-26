@@ -42,6 +42,7 @@ select * from Turnos;
 select * from Usuarios;
 select * from Servicios;
 
+select * from `AsesoresRecepcion`;
 
 #drop table
 

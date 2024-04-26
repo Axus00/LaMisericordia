@@ -18,10 +18,13 @@ public class EmpleadosController : Controller
     private readonly BaseContext _context;
 
     private readonly Servicios _servicios;
-    public EmpleadosController(BaseContext context, Servicios servicios)
+
+    private readonly Bcrypt _bcrypt;
+    public EmpleadosController(BaseContext context, Servicios servicios, Bcrypt bcrypt)
     {
         _context = context;
         _servicios = servicios;
+        _bcrypt = bcrypt;
     }
 
     //vistas
@@ -34,9 +37,10 @@ public class EmpleadosController : Controller
 
     //Login
     [HttpPost]
-    public async Task<IActionResult> Login(string correo, string contrasena)
+    public async Task<IActionResult> Login(string correo, string contrasena, string password)
     {
-        var asesor = await _context.AsesoresRecepcion.FirstOrDefaultAsync(a => a.Correo == correo && a.Contrasena == contrasena);
+        var asesor = await _context.AsesoresRecepcion.FirstOrDefaultAsync(a => a.Correo == correo && a.Contrasena == password);
+        string hashedContrasena = asesor.Contrasena;     
 
         //Inicio configuración cookie para los roles
         if(asesor != null)
@@ -68,14 +72,27 @@ public class EmpleadosController : Controller
                 Secure = true
             };
                 
+            
         
             HttpContext.Response.Cookies.Append("Asesor", asesor.Id.ToString(), cookiesOptions);
             HttpContext.Response.Cookies.Append("ModuloAsesor", asesor.Modulo, cookiesOptions);
 
             TempData["Message"] = "Login is already";
-            //Guardamos y redireccionamos
-            _context.SaveChanges();
-            return RedirectToAction("Home", "Empleados");
+            
+            
+
+            //agregamos verificación de password
+            if(_bcrypt.verifyContrasena(contrasena, hashedContrasena))
+            {
+                //Guardamos y redireccionamos
+                _context.SaveChanges();
+                return RedirectToAction("Home", "Empleados");
+            }
+            else 
+            {
+                ModelState.AddModelError("", "Usuario o contraseña incorrecta");
+                return View();
+            }
         }
         else
         {

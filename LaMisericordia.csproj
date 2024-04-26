@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net" Version="0.1.0" />
     <PackageReference Include="Microsoft.EntityframeworkCore" Version="8.0.4" />
     <PackageReference Include="Pomelo.EntityframeworkCore.MySql" Version="8.0.2" />
     <PackageReference Include="System.Speech" Version="8.0.0" /> <!--paquete de voz-->

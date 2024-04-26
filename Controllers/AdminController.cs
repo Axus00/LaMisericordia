@@ -1,5 +1,6 @@
 using LaMisericordia.Data;
 using LaMisericordia.Models;
+using LaMisericordia.Clases;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -14,9 +15,12 @@ public class AdminController : Controller
 {
     private readonly BaseContext _context;
 
-    public AdminController(BaseContext context)
+    private readonly Bcrypt _bcrypt;
+
+    public AdminController(BaseContext context, Bcrypt bcrypt)
     {
         _context = context;
+        _bcrypt = bcrypt;
     }
 
     public IActionResult Index()
@@ -47,13 +51,15 @@ public class AdminController : Controller
     //crear Asesores
     public IActionResult Create()
     {
+        
         return View();
     }
 
 
     [HttpPost]
-    public async Task<IActionResult> Create(AsesorRecepcion asesor)
+    public async Task<IActionResult> Create(AsesorRecepcion asesor, string contrasena)
     {
+        string hashedContrasena = _bcrypt.HashContrasena(contrasena);
         _context.AsesoresRecepcion.Add(asesor);
         await _context.SaveChangesAsync();
 
