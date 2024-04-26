@@ -2,13 +2,9 @@
 
 using Microsoft.AspNetCore.Mvc; 
 using LaMisericordia.Data; 
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore; 
 using LaMisericordia.Models; 
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using System;
-using System.Speech.Synthesis;
+using QRCoder;
 
 // Definimos el espacio de nombres y la clase para nuestro controlador de empleados
 
@@ -56,8 +52,10 @@ namespace LaMisericordia.Controllers
 
         public async Task<ActionResult> Ticket(string servicio)
         {
-            await Task.Delay(TimeSpan.FromSeconds(3));
+            await Task.Delay(5000);
+
             int numeroTurno = ObtenerNumeroTurno(); 
+
             int selectModulo;
             string service = "";
             string codigoTurno = "";
@@ -79,10 +77,23 @@ namespace LaMisericordia.Controllers
             }
 
             DateTime fechaActualInicio = DateTime.Now; 
-            
+        
             ViewBag.CodigoTurno = codigoTurno;
-
             ViewBag.FechaActualInicio = fechaActualInicio;
+            ViewBag.user = HttpContext.Request.Cookies["numeroDocumento"];
+
+            // Generar QR.
+            string texto  = $"{service} - {codigoTurno}";
+            
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(texto, QRCodeGenerator.ECCLevel.Q);
+
+            PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
+            byte[] qrCodeImage = qrCode.GetGraphic(50);
+
+            var imgBase64 = Convert.ToBase64String(qrCodeImage);
+
+            ViewBag.QRCodeImage = imgBase64;
 
 
             var nuevoTurno = new Turno
@@ -95,10 +106,7 @@ namespace LaMisericordia.Controllers
                 Modulo = selectModulo.ToString()
             };
 
-            ViewBag.user = HttpContext.Request.Cookies["numeroDocumento"];
-
             _BaseContext.Turnos.Add(nuevoTurno);
-
             await _BaseContext.SaveChangesAsync();
 
             return View();
@@ -117,6 +125,8 @@ namespace LaMisericordia.Controllers
             
         }
 
+
+       
 
         [HttpPost]
         public IActionResult ReiniciarTurno()

@@ -1,20 +1,21 @@
+@model AsesorRecepcion
+
 @{
-  ViewData["Title"] = "Usuarios";
+    ViewData["Title"] = "Detalles Asesor";
 }
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="~/css/Admin.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Admin.css" asp-append-version="true" />
 </head>
 <body>
-
-    @section Sidebar{
-      <div class="area"></div>
+@section Sidebar{
+    <div class="area"></div>
         <nav class="main-menu nav">
             <ul class="d-flex flex-column gap-3">
               <li class="mt-5">
-                  <a asp-controller="Empleados" asp-action="Home">
+                  <a asp-controller="Employees" asp-action="Index">
                       <i class="fa fa-home fa-2x"></i>
                       <span class="nav-text">
                           Inicio
@@ -49,7 +50,7 @@
 
             <ul class="logout">
                 <li>
-                    <a asp-controller="Empleados" asp-action="Index">
+                   <a asp-controller="Empleados" asp-action="Index">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span class="nav-text gap-2">
                             Logout
@@ -58,44 +59,25 @@
                 </li>  
             </ul>
         </nav>
-    }
+  }
 
-<div class="container">
-  <h1 class="text-center">Usuarios</h1>
-  <div class="row RowTable">
-    <div class="col-md-9">
-
-      <form class="form d-flex gap-3 mb-3" method="get">
-            <input class="form-control" type="text" placeholder="Buscar...">
-            <button class="btn btn-sm btn-primary" type="submit">Search</button>
-      </form>
-
-      <table class="table table-hover table-striped text-center">
-        <thead class="table table-dark text-center">
-          <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Documento</th>
-            <th scope="col">Atención Preferencial</th>
-            <th scope="col">Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach(var Usuarios in Model){
-              <tr>
-                  <th scope="row">@Usuarios.Id</th>
-                  <td>@Usuarios.DocumentoIdentidad</td>
-                  <td>@Usuarios.typeDocument</td>
-                  <td>
-                      <button class="btn btn-danger" asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@Usuarios.Id">Delete</button>
-                  </td>
-              </tr>
-
-          }
-        </tbody>
-      </table>
+  <div class="container">
+    <div class="row RowTable">
+        <div class="col-md-12">
+            <form class="form" method="get" asp-action="Details">
+                <div class="col-2 mb-3">
+                    <label>Correo</label>
+                    <input class="form-control" asp-for="Correo" placeholder="@Model.Correo" type="text">
+                </div>
+                <div class="col-2 mb-3">
+                    <label>Modulo</label>
+                    <input class="form-control" asp-for="Modulo" placeholder="@Model.Modulo" type="text">
+                </div>
+                
+                <a class="btn btn-sm btn-success" asp-controller="Empleados" asp-action="Home">Regresar</a>
+            </form>
+        </div>          
     </div>
   </div>
-</div>
-
 </body>
 </html>
