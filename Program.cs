@@ -1,6 +1,8 @@
 using LaMisericordia.Data;
+using LaMisericordia.Clases;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.DependencyInjection;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +33,9 @@ builder.Services.AddSession(options => {
     options.Cookie.IsEssential = true;
     options.Cookie.SameSite = SameSiteMode.Strict;
 });
+
+//servicio para Inner
+builder.Services.AddScoped<Servicios>();
 
 var app = builder.Build();
 
