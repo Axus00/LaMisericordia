@@ -165,20 +165,20 @@ public class EmpleadosController : Controller
 
     public async Task <IActionResult> Medicamentos()
     {
-        var Medicamentos = _context.Turnos.Where(c => c.typeServicio == "Medicamentos");
+        var Medicamentos = _context.Turnos.Where(c => c.typeServicio == "Solicitar Medicamento");
         
         return View("Home",await Medicamentos.ToListAsync());
     }
 
     public async Task <IActionResult> Pagos()
     {
-        var Pagos = _context.Turnos.Where(c => c.typeServicio == "Pagos");
+        var Pagos = _context.Turnos.Where(c => c.typeServicio == "Realizar Pagos");
         return View("Home",await Pagos.ToListAsync());
     }
 
     public async Task <IActionResult> General()
     {
-        var General = _context.Turnos.Where(c => c.typeServicio == "General");
+        var General = _context.Turnos.Where(c => c.typeServicio == "Cita General");
         return View("Home",await General.ToListAsync());
     }
 
@@ -203,6 +203,15 @@ public class EmpleadosController : Controller
         VozTurno.SpeakAsync(Turno);
     }
 
+    [HttpPost]
+    public IActionResult ReiniciarTurno()
+    {
+
+        Response.Cookies.Append("NumeroTurno", "0");
+
+        return RedirectToAction("Empleados", "Home"); 
+        
+    }
     
 }
 

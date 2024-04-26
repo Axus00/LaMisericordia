@@ -9,8 +9,16 @@
 </head>
 <body>
 <div class="container">
-    <div class="top">
-        <a class="btn btn-xm btn-dark mb-3 mt-3" asp-controller="Empleados" asp-action="Logout">Cerrar Sesión</a>
+    <div class="row">
+        <div class="col-md-2">
+            <a class="btn btn-xm btn-dark mb-3 mt-3 w-100" asp-controller="Empleados" asp-action="Logout">Cerrar Sesión</a>
+        </div>
+        <div class="col-md-2">
+            <form asp-controller="Empleados" asp-action="ReiniciarTurno" method="post">
+                <button class="btn btn-xm btn-warning mb-3 mt-3 w-100">Resetear Turnos</button>
+            </form>
+        </div>
+        
         <h1 class="text-center mb-4">Asesor del Módulo # @ViewBag.modulo</h1>    
     </div>
     @ViewBag.contador
