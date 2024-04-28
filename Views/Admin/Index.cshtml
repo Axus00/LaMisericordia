@@ -1,3 +1,5 @@
+@model IndexViewModel
+
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -70,7 +72,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="text-dark text-center">Turnos Totales</h2>
-                        <p class="text-center">@ViewBag.Contador</p>
+                        <p class="text-center">@Model.TotalTurnos</p>
                     </div>
                 </div>
             </div>
@@ -78,7 +80,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="text-dark text-center">Medicamentos</h2>
-                        <p class="text-center">@ViewBag.contador2</p>
+                        <p class="text-center">@Model.TotalMedicamentos</p>
                     </div>
                 </div>
             </div>
@@ -94,7 +96,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="text-dark text-center">Turnos General</h2>
-                        <p class="text-center">@ViewBag.contadoGeneral</p>
+                        <p class="text-center">@Model.TotalGeneral</p>
                     </div>
                 </div>
             </div>
@@ -102,7 +104,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="text-dark text-center">Usuarios Totales</h2>
-                        <p class="text-center">11</p>
+                        <p class="text-center">@Model.TotalUsuarios</p>
                     </div>
                 </div>
             </div>
@@ -110,7 +112,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="text-dark text-center">Admin</h2>
-                        <p class="text-center">@ViewBag.contadorAdmins</p>
+                        <p class="text-center">@Model.TotalAdmins</p>
                     </div>
                 </div>
             </div>
@@ -118,7 +120,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="text-dark text-center">Empleados</h2>
-                        <p class="text-center">@ViewBag.contadorAsesor</p>
+                        <p class="text-center">@Model.TotalAsesores</p>
                     </div>
                 </div>
             </div>
@@ -126,7 +128,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="text-dark text-center">Usuarios</h2>
-                        <p class="text-center">@ViewBag.contadorUsuarios</p>
+                        <p class="text-center">@Model.TotalUsuarios</p>
                     </div>
                 </div>
             </div>
