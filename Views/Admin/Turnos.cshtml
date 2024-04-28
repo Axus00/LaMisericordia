@@ -66,14 +66,14 @@
     <div class="row RowTable">
       <div class="col-md-9">
         <div class="top d-flex gap-5 mb-4">
-          <form class="form d-flex gap-3" method="get">
-              <input class="form-control" type="text" placeholder="Buscar...">
+          <form class="form d-flex gap-3" asp-controller="Admin" asp-action="SearchTurno" method="get">
+              <input class="form-control" type="text" name="SearchString" placeholder="Buscar...">
               <button class="btn btn-sm btn-primary" type="submit">Search</button>
           </form>
           <div class="button d-flex gap-5">
-            <a class="btn btn-sm btn-dark" asp-controller="Adimin" asp-action="Medicamentos">Medicamentos</a>
-            <a class="btn btn-sm btn-dark" asp-controller="Adimin" asp-action="Pagos">Pagos</a>
-            <a class="btn btn-sm btn-dark" asp-controller="Adimin" asp-action="General">General</a>
+            <a class="btn btn-sm btn-dark" asp-controller="Admin" asp-action="Medicamentos">Medicamentos</a>
+            <a class="btn btn-sm btn-dark" asp-controller="Admin" asp-action="Pagos">Pagos</a>
+            <a class="btn btn-sm btn-dark" asp-controller="Admin" asp-action="General">General</a>
           </div>
         </div>
 

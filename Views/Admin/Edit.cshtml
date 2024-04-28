@@ -65,7 +65,7 @@
   <div class="container">
     <div class="row RowTable">
         <div class="col-md-12">
-            <form class="form" method="get" asp-action="Actualizar" asp-route-id="@Model.Id">
+            <form class="form" method="get" asp-controller="Admin" asp-action="Actualizar" asp-route-id="@Model.Id">
                 <div class="col-2 mb-3">
                     <label>Correo</label>
                     <input class="form-control" asp-for="Correo" placeholder="@Model.Correo" type="text">
@@ -75,7 +75,7 @@
                     <input class="form-control" asp-for="Modulo" placeholder="@Model.Modulo" type="text">
                 </div>
                 
-                <button class="btn btn-sm btn-success" type="submit">Regresar</button>
+                <button class="btn btn-sm btn-success" type="submit">Actualizar</button>
             </form>
         </div>          
     </div>

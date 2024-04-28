@@ -142,13 +142,26 @@ public class AdminController : Controller
     public async Task <IActionResult> General()
     {
         var General = _context.Turnos.Where(c => c.typeServicio == "Cita General");
-        return View("General", await General.ToListAsync());
+        return View("Turnos", await General.ToListAsync());
     }
 
     public IActionResult Edit(int? id )
     {
         var Empleado = _context.AsesoresRecepcion.FirstOrDefault(d => d.Id == id);
         return View(Empleado);
+    }
+
+
+    //Buscador
+    public IActionResult SearchTurno(string SearchString)
+    {
+        var Search = _context.Turnos.AsQueryable();
+
+        if(!string.IsNullOrEmpty(SearchString)){
+            Search = Search.Where(u =>u.typeServicio.Contains(SearchString) || u.NameTurno.Contains(SearchString) || u.Estado.Contains(SearchString) || u.Modulo.Contains(SearchString));
+
+        }
+        return View("Turnos",Search.ToList()); 
     }
 
     [HttpPost]
