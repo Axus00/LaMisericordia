@@ -12,15 +12,19 @@ using System.Speech.Synthesis;
 
 namespace LaMisericordia.Controllers;
 
+
 public class EmpleadosController : Controller
 {
     private readonly BaseContext _context;
 
     private readonly Servicios _servicios;
-    public EmpleadosController(BaseContext context, Servicios servicios)
+
+    private readonly Bcrypt _bcrypt;
+    public EmpleadosController(BaseContext context, Servicios servicios, Bcrypt bcrypt)
     {
         _context = context;
         _servicios = servicios;
+        _bcrypt = bcrypt;
     }
 
     //vistas
@@ -33,9 +37,10 @@ public class EmpleadosController : Controller
 
     //Login
     [HttpPost]
-    public async Task<IActionResult> Login(string correo, string contrasena)
+    public async Task<IActionResult> Login(string correo, string Contrasena)
     {
-        var asesor = await _context.AsesoresRecepcion.FirstOrDefaultAsync(a => a.Correo == correo && a.Contrasena == contrasena);
+        var asesor = await _context.AsesoresRecepcion.FirstOrDefaultAsync(a => a.Correo == correo);
+        string hashedContrasena = asesor.Contrasena;     
 
         //Inicio configuración cookie para los roles
         if(asesor != null)
@@ -67,14 +72,27 @@ public class EmpleadosController : Controller
                 Secure = true
             };
                 
+            
         
             HttpContext.Response.Cookies.Append("Asesor", asesor.Id.ToString(), cookiesOptions);
             HttpContext.Response.Cookies.Append("ModuloAsesor", asesor.Modulo, cookiesOptions);
 
             TempData["Message"] = "Login is already";
-            //Guardamos y redireccionamos
-            _context.SaveChanges();
-            return RedirectToAction("Home", "Empleados");
+            
+            
+
+            //agregamos verificación de password
+            if(_bcrypt.verifyContrasena(Contrasena,hashedContrasena))
+            {
+                //Guardamos y redireccionamos
+                _context.SaveChanges();
+                return RedirectToAction("Home", "Empleados");
+            }
+            else 
+            {
+                ModelState.AddModelError("", "Usuario o contraseña incorrecta");
+                return View();
+            }
         }
         else
         {
@@ -99,16 +117,16 @@ public class EmpleadosController : Controller
         return RedirectToAction("Index", "Empleados");
     }
 
-    [Authorize(Roles = "Asesor")]
+    [Authorize(Roles = "Admin, Asesor")]
     public async Task <IActionResult> Home()
     {
-        var contadorTurno = _context.Turnos.Count();
+        
         //capturamos cookies
         var numeroModulo = HttpContext.Request.Cookies["ModuloAsesor"];
         var modulo = HttpContext.Request.Cookies["Modulo"];
 
         @ViewBag.modulo = numeroModulo;
-        @ViewBag.contador = contadorTurno;
+        
 
 
         return View(await _context.Turnos.ToListAsync());
@@ -165,20 +183,20 @@ public class EmpleadosController : Controller
 
     public async Task <IActionResult> Medicamentos()
     {
-        var Medicamentos = _context.Turnos.Where(c => c.typeServicio == "Medicamentos");
+        var Medicamentos = _context.Turnos.Where(c => c.typeServicio == "Solicitar Medicamento");
         
         return View("Home",await Medicamentos.ToListAsync());
     }
 
     public async Task <IActionResult> Pagos()
     {
-        var Pagos = _context.Turnos.Where(c => c.typeServicio == "Pagos");
+        var Pagos = _context.Turnos.Where(c => c.typeServicio == "Realizar Pagos");
         return View("Home",await Pagos.ToListAsync());
     }
 
     public async Task <IActionResult> General()
     {
-        var General = _context.Turnos.Where(c => c.typeServicio == "General");
+        var General = _context.Turnos.Where(c => c.typeServicio == "Cita General");
         return View("Home",await General.ToListAsync());
     }
 
@@ -187,6 +205,7 @@ public class EmpleadosController : Controller
         await RepetirTurno(llamado.NameTurno);
         return RedirectToAction("Home");
     }
+    
     private async Task RepetirTurno(string Turno)
     {
         //Primera llamada
@@ -202,6 +221,15 @@ public class EmpleadosController : Controller
         VozTurno.SpeakAsync(Turno);
     }
 
+    [HttpPost]
+    public IActionResult ReiniciarTurno()
+    {
+
+        Response.Cookies.Append("NumeroTurno", "0");
+
+        return RedirectToAction("Empleados", "Home"); 
+        
+    }
     
 }
 

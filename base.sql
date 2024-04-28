@@ -42,6 +42,7 @@ select * from Turnos;
 select * from Usuarios;
 select * from Servicios;
 
+select * from `AsesoresRecepcion`;
 
 #drop table
 
@@ -79,6 +80,7 @@ values
 ("Robinson@lamisericordia.com","123","5",'["Asesor"]'),
 ("Juan@adminlamisericordia.com", "juan123", "N/A", '["Admin"]');
 truncate table Turnos;
+
 
 truncate table AsesoresRecepcion;
 #foreign key

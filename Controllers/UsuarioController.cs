@@ -2,13 +2,9 @@
 
 using Microsoft.AspNetCore.Mvc; 
 using LaMisericordia.Data; 
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore; 
 using LaMisericordia.Models; 
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using System;
-using System.Speech.Synthesis;
+using QRCoder;
 
 
 // Definimos el espacio de nombres y la clase para nuestro controlador de empleados
@@ -35,7 +31,14 @@ namespace LaMisericordia.Controllers
         //View User TicketScreen
         public async Task<IActionResult> TicketScreen()
         {
+            await RecargarPagina();
             return View(await _BaseContext.Turnos.ToListAsync());
+
+        }
+
+        public async Task RecargarPagina(){
+            await Task.Delay(TimeSpan.FromSeconds(0));
+            RedirectToAction("TicketScreen");
         }
 
         public IActionResult FormIndex()        
@@ -50,19 +53,21 @@ namespace LaMisericordia.Controllers
 
         public async Task<ActionResult> Ticket(string servicio)
         {
-            await Task.Delay(TimeSpan.FromSeconds(3));
+            await Task.Delay(5000);
+
             int numeroTurno = ObtenerNumeroTurno(); 
+
             int selectModulo;
             string service = "";
             string codigoTurno = "";
 
-            if (servicio == "MC"){
-                codigoTurno = "MC" + numeroTurno.ToString().PadLeft(3, '0');
-                service = "Medicamentos";
+            if (servicio == "SM"){
+                codigoTurno = "SM" + numeroTurno.ToString().PadLeft(3, '0');
+                service = "Solicitar Medicamento";
                 selectModulo = 1;
             }
-            else if (servicio == "SM") {
-                codigoTurno = "SM" + numeroTurno.ToString().PadLeft(3, '0');
+            else if (servicio == "VF") {
+                codigoTurno = "VF" + numeroTurno.ToString().PadLeft(3, '0');
                 service = "Realizar Pagos";
                 selectModulo = 2;
             }
@@ -73,26 +78,36 @@ namespace LaMisericordia.Controllers
             }
 
             DateTime fechaActualInicio = DateTime.Now; 
-            
+        
             ViewBag.CodigoTurno = codigoTurno;
-
             ViewBag.FechaActualInicio = fechaActualInicio;
+            ViewBag.user = HttpContext.Request.Cookies["numeroDocumento"];
+
+            // Generar QR.
+            string texto  = $"{service} - {codigoTurno}";
+            
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(texto, QRCodeGenerator.ECCLevel.Q);
+
+            PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
+            byte[] qrCodeImage = qrCode.GetGraphic(50);
+
+            var imgBase64 = Convert.ToBase64String(qrCodeImage);
+
+            ViewBag.QRCodeImage = imgBase64;
 
 
             var nuevoTurno = new Turno
             {
                 UsuariosId = Convert.ToInt32(HttpContext.Request.Cookies["userId"]),
                 Estado = "En espera",
-                typeServicio = servicio,
+                typeServicio = service,
                 NameTurno = codigoTurno, 
                 FechaHoraInicio = fechaActualInicio,
                 Modulo = selectModulo.ToString()
             };
 
-            ViewBag.user = HttpContext.Request.Cookies["numeroDocumento"];
-
             _BaseContext.Turnos.Add(nuevoTurno);
-
             await _BaseContext.SaveChangesAsync();
 
             return View();
@@ -111,6 +126,8 @@ namespace LaMisericordia.Controllers
             
         }
 
+
+       
 
         [HttpPost]
         public IActionResult ReiniciarTurno()

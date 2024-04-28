@@ -61,3 +61,8 @@ h2 {
     justify-content: center;
     align-items: center;
 }
+
+.qrGenerator {
+    width: auto;
+    height: 200px;
+}

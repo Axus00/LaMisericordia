@@ -2,26 +2,52 @@
     ViewData["Title"] = "Home";
 }
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    
+    <link rel="stylesheet" href="~/css/SkormJF.css" />
 </head>
-<body>
-<div class="container">
-    <div class="top">
-        <a class="btn btn-xm btn-dark mb-3 mt-3" asp-controller="Empleados" asp-action="Logout">Cerrar Sesión</a>
+
+ <div class="container">
+    <div class="row">
+        <div class="col-md-2 d-flex justify-content-center">
+            <a class="btn btn-xm btn-dark mb-3 mt-3" asp-controller="Empleados" asp-action="Logout">Cerrar Sesión</a>
+        </div>
+        <div class="col-md-2 d-flex justify-content-center">
+            <form asp-controller="Empleados" asp-action="ReiniciarTurno" method="post">
+                <button class="btn btn-xm btn-warning mb-3 mt-3 w-100">Resetear Turnos</button>
+            </form>
+        </div>
+        @if(User.IsInRole("Admin"))
+        {
+            <div class="col-md-2 d-flex justify-content-center">
+                <a class="btn btn-xm btn-dark mb-3 mt-3" asp-controller="Admin" asp-action="Index">CRM</a>
+            </div>
+            <div class="col-md-2 d-flex justify-content-center">
+                <a class="btn btn-xm btn-dark mb-3 mt-3" asp-controller="Admin" asp-action="Create">Crear Asesor</a>
+            </div>
+            <div class="col-md-2 d-flex justify-content-center">
+                <a class="btn btn-xm btn-dark mb-3 mt-3" asp-controller="Admin" asp-action="Empleados">Listado de Asesores</a>
+            </div>
+        }
         <h1 class="text-center mb-4">Asesor del Módulo # @ViewBag.modulo</h1>    
+
     </div>
     @ViewBag.contador
-    <div class="row">
-        <div class="col-md-12">
-            <div class="">
-                <h1>Turnos en Pantalla</h1>
-            </div>
-            <table class="table table-striped">
+    <div class="Pantalla">
+        <div class="Titulo">
+            <lord-icon
+                class="Icono"
+                src="https://cdn.lordicon.com/mebvgwrs.json"
+                trigger="hover"
+                stroke="bold"
+                state="hover-wave"
+                colors="primary:#121331,secondary:#f9c9c0,tertiary:#66d7ee,quaternary:#545454,quinary:#66d7ee">
+            </lord-icon>
+            <h1>Turnos en pantalla</h1>
+        </div>
+        <div class="InfoTablas">
+            <table class="table table-striped table-hover">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th scope="col">Id</th>
                         <th scope="col">Turno</th>
                         <th scope="col">Documento de usuario</th>
@@ -33,16 +59,16 @@
                 <tbody>
                     @foreach(var Turnos in Model){
                         if(@Turnos.Estado == "En proceso"){
-                            <tr>
+                            <tr class="text-center">
                                 <th scope="row">@Turnos.Id</th>
                                 <td>@Turnos.NameTurno</td>
                                 <td>1023626270</td>
                                 <td>@Turnos.Estado</td>
                                 <td>@Turnos.Modulo</td>
-                                <td>
+                                <td class="d-flex justify-content-evenly">
                                     <a class="btn btn-primary" asp-controller="Empleados" asp-action="Liberar" asp-route-id = "@Turnos.Id">Liberar</a>
                                     <a class="btn btn-danger" asp-controller="Empleados" asp-action="Ausente" asp-route-id= "@Turnos.Id">Ausente</a>
-                                    <a class="btn btn-danger" asp-controller="Empleados" asp-action="Llamar" asp-route-id="@Turnos.Id">Llamar</a>
+                                    <a class="btn btn-success" asp-controller="Empleados" asp-action="Llamar" asp-route-id="@Turnos.Id">Llamar</a>
                                 </td>
                             </tr>
                         }
@@ -50,21 +76,26 @@
                 </tbody>
             </table>
         </div>
-        <br>
-        <br>
-        <div class="col-md-12">
-            <br>
-            <br>
-            <br>
-            <div class="" >
-                <h1>Gestor Turnos</h1>
-                <a class="btn btn-info" asp-controller="Empleados" asp-action="Medicamentos">Medicamentos</a>
-                <a class="btn btn-primary" asp-controller="Empleados" asp-action="Pagos">Realizar Pagos</a>
-                <a class="btn btn-danger" asp-controller="Empleados" asp-action="General">Cita General</a>
-            </div>
-            <table class="table table-striped">
+    </div>
+    <div class="Gestor">
+        <div class="Titulo">
+            <lord-icon
+                class="Icono"
+                src="https://cdn.lordicon.com/mebvgwrs.json"
+                trigger="hover"
+                stroke="bold"
+                state="hover-wave"
+                colors="primary:#121331,secondary:#f9c9c0,tertiary:#66eece,quaternary:#545454,quinary:#30e8bd">
+            </lord-icon>
+            <h1>Gestor de turnos</h1>
+            <a class="btn btn-info" asp-controller="Empleados" asp-action="Medicamentos">Medicamentos</a>
+            <a class="btn btn-primary" asp-controller="Empleados" asp-action="Pagos">Realizar Pagos</a>
+            <a class="btn btn-danger" asp-controller="Empleados" asp-action="General">Cita General</a>
+        </div>
+        <div class="InfoTablas">
+            <table class="table table-striped table-hover">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th scope="col">ID</th>
                         <th scope="col">Turno</th>
                         <th scope="col">Documento De usuario</th>
@@ -76,14 +107,14 @@
                 <tbody>
                     @foreach(var Turnos in Model){
                         if(@Turnos.Estado == "En espera"){
-                            <tr>
-                                <th scope="row">@Turnos.Id</th>
+                            <tr class="text-center">
+                                <td scope="row">@Turnos.Id</td>
                                 <td>@Turnos.NameTurno</td>
                                 <td>1023626270</td>
                                 <td>@Turnos.typeServicio</td>
                                 <td>@Turnos.Estado</td>
                                 <td>
-                                    <a class="btn btn-primary" asp-controller="Empleados" asp-action="SubirTurno" asp-route-id="@Turnos.Id" onclick="ActualizarPagina()">Subir Turno</a>
+                                    <a class="btn btn-primary" asp-controller="Empleados" asp-action="SubirTurno" asp-route-id="@Turnos.Id">Subir Turno</a>
                                 </td>
 
                             </tr>
@@ -95,8 +126,11 @@
             </table>
         </div>
     </div>
-</div>
-</body>
-</html>
+</section>
+
+
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
+
+
 
 

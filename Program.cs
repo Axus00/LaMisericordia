@@ -3,6 +3,7 @@ using LaMisericordia.Clases;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
+using BCrypt.Net;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,6 +37,9 @@ builder.Services.AddSession(options => {
 
 //servicio para Inner
 builder.Services.AddScoped<Servicios>();
+
+//Agregamos servicio BCrypt
+builder.Services.AddScoped<Bcrypt>();
 
 builder.Services.AddSignalR();
 
