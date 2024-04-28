@@ -1,45 +1,60 @@
-
 @{
     ViewData["Title"] = "Options";
-    <link rel="stylesheet" href="~/css/fondoOptions.css" asp-append-version="true" />
 }
+<link rel="stylesheet" href="~/css/fondoOptions.css" asp-append-version="true" />
 
-<div class="row row-logos d-flex justify-content-between mb-2">
-
-        <img class="logo ms-4 mt-4 img-fluid" src="../assets/img/Logo.png" alt="Descripción de la imagen">    
-
-        <img class="logoWifi me-4 mt-4 img-fluid" src="../assets/img/iconWifiFree.png" alt="Descripción de la imagen">
-
-</div>
-
-<div class="container" style="height: 60vh;">
-
-    <div class="d-flex flex-column justify-content-center align-item-center" style="height: 100%; width: 100%">
-
-        <div class="row d-flex justify-content-center">
-            <div class="col d-flex justify-content-center ">
-                <img class="logoClick img-fluid" src="../assets/img/iconClick.png" alt="Descripción de la imagen">
-            </div>
+<div class="container-fluid">
+    <div class="row d-flex justify-content-between mb-4">
+        <div class="col-auto">
+            <img class="logo img-fluid" src="../assets/img/Logo.png" alt="Logo de la empresa">
         </div>
-
-        <div class="row">
-            <h4 class="text-center mb-5 textDescription">Toque la opción de servicio que desea en esta pantalla para tomar un turno</h4>
-        </div>
-
-        <div class="row btnOptions d-flex justify-content-center">
-            <div class="col-md-3">
-                <a asp-route-servicio="SM" class="btn btn-primary btnCustom me-5 mb-3 w-100" asp-controller="usuario" asp-action="ticket" value="SM">Solicitar Medicamento</a>
-            </div>
-
-            <div class="col-md-3">
-                <a asp-route-servicio="VF" class="btn btn-primary btnCustom me-5 mb-3 w-100" asp-controller="usuario" asp-action="ticket" value="PF">Ver Facturas</a>
-            </div>
-
-            <div class="col-md-3">
-                <a asp-route-servicio="SC" class="btn btn-primary btnCustom me-5 mb-2 w-100" asp-controller="usuario" asp-action="ticket" value="SC">Solicitar Citas</a>
-            </div>
+        <div class="col-auto">
+            <img class="logoWifi img-fluid" src="../assets/img/iconWifiFree.png" alt="Icono WiFi">
         </div>
     </div>
+
+    <div class="container my-3" style="height: 100%;">
+
+            <div class="row d-flex justify-content-">
+                <div class="col d-flex justify-content-center">
+                    <img class="logoClick img-fluid mb-4" src="../assets/img/iconClick.png" alt="Ícono clickeable">
+                </div>
+            </div>
+
+            <h4 class="text-center mb-5 textDescription">Toque la opción de servicio que desea en esta pantalla para tomar un turno</h4>
+
+            <div class="row btnOptions">
+                <div class="col-md-4">
+                    <a asp-route-servicio="SM" class="btn btn-primary mb-3 w-100" asp-controller="usuario" asp-action="ticket" value="SM">
+                        <div class="ButtonWithImage me-3">
+                            <img src="../assets/img/medicine.png" alt="Ícono de solicitud de turno" class="btn-img">
+                        </div>          
+                        <span>
+                            Solicitar Medicamento
+                        </span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a asp-route-servicio="VF" class="btn btn-primary mb-3 w-100" asp-controller="usuario" asp-action="ticket" value="VF">
+                        <div class="ButtonWithImage me-3">
+                            <img src="../assets/img/bill.png" alt="Ícono de solicitud de turno" class="btn-img">
+                        </div>         
+                        <span>
+                            Ver Facturas
+                        </span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a asp-route-servicio="SC" class="btn btn-primary mb-3 w-100" asp-controller="usuario" asp-action="ticket" value="SC">
+                        <div class="ButtonWithImage me-3">
+                            <img src="../assets/img/medical.png" alt="Ícono de solicitud de turno" class="btn-img">
+                        </div>    
+                        <span>
+                            Solicitar Citas
+                        </span>
+                    </a>
+                </div>
+            </div>
+            
+    </div>
 </div>
-
-

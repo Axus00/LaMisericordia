@@ -74,22 +74,18 @@
             <tr>
               <th scope="col">id</th>
               <th scope="col">Correo</th>
-              <th scope="col">Contraseña</th>
               <th scope="col">Modulo</th>
-              <th scope="col">Tipo de empleado</th>
               <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
             @foreach(var AsseorRecepcion in Model){
 
-                <tr>
+                <tr class="text-center">
                     <th scope="row">@AsseorRecepcion.Id</th>
                     <td>@AsseorRecepcion.Correo</td>
-                    <td>@AsseorRecepcion.Contrasena</td>
                     <td>@AsseorRecepcion.Modulo</td>
-                    <td></td>
-                    <td class="d-flex gap-3">
+                    <td class="d-flex gap-3 justify-content-center">
                         <a class="btn btn-sm btn-dark">Eliminar</a>
                         <a class="btn btn-sm btn-dark"asp-controller="Admin" asp-action="Edit" asp-route-id="@AsseorRecepcion.Id">Editar</a>
                         <a class="btn btn-success" asp-controller="Admin" asp-action="Details" asp-route-id="@AsseorRecepcion.Id">Detalles</a>

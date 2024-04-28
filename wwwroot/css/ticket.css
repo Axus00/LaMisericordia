@@ -1,23 +1,15 @@
+/* Google Fonts Import */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-*{
+/* Basic Reset */
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: "Signika Negative", sans-serif;
-    background: linear-gradient(rgba(253, 253, 253, 0.685), 
-    rgba(255, 255, 255, 0.568)), url("../assets/img/FondoIndex.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: hidden;
-}
-
+/* Logos */
 .logo {
-
     width: auto;
     height: 160px;
 }
@@ -27,29 +19,32 @@ body {
     height: 120px;
 }
 
+/* Container Styling */
 .containerInfo {
     background-color: white;
-    border: black solid 3px;
+    border: 3px solid black;
     border-radius: 25px;
     height: 100%;
-    padding: 4%;
+    padding: 2%;
 }
 
+/* Typography */
 h3 {
-    font-size: 3rem;
+    font-size: 3rem;  /* Consider adjusting for responsiveness */
 }
 
 h2 {
-    font-size: 2rem;
+    font-size: 2rem;  /* Consider adjusting for responsiveness */
 }
 
 .ticket {
-    font-size: 9em;
+    font-size: 8em;  /* This might need media queries for smaller screens */
 }
 
-.btnTurno{
+/* Buttons */
+.btnTurno {
     width: 20%;
-    height: 50px; 
+    height: 50px;
     font-size: 1.7rem;
     padding: 30px 20px;
     border-radius: 10px;
@@ -62,7 +57,9 @@ h2 {
     align-items: center;
 }
 
+/* QR Code Generator Styling */
 .qrGenerator {
-    width: auto;
-    height: 200px;
+    max-width: 25%; /* Ensure QR code doesn't exceed its container */
 }
+
+

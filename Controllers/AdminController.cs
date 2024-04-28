@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace LaMisericordia.Controllers;
 
-
+[Authorize(Roles = "Admin")]
 public class AdminController : Controller
 {
     private readonly BaseContext _context;
@@ -104,6 +104,9 @@ public class AdminController : Controller
     public IActionResult DeleteTurnos(int? id)
     {
         var Turno = _context.Turnos.FirstOrDefault(d => d.Id == id);
+
+        //agregamos mensaje al momento de eliminar
+        TempData["Eliminado"] = "El turno ha sido eliminado";
 
         _context.Turnos.Remove(Turno);
         _context.SaveChanges();

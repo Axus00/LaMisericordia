@@ -2,15 +2,31 @@
     <link rel="stylesheet" href="~/css/SkormJF.css" />
 </head>
 
-<section class="Main mt-5">
-    <div class="Background"></div>
-    <div class="LogoContainer">
+<section class="container mt-5">
+
+    <div class="row mb-5">
         <div class="LogoImg"></div>
-        <h1 class="me-5">BIENVENIDO</h1>
-        <h1 class="ms-5">LA MISERICORIDA</h1>
     </div>
-    <div class="ButtonsIndex">
-        <a asp-asp-controller="Usuario" asp-action="FormIndex" class="btn btn-info btn-lg ButtonSize" as >Solicitar turno</a>
-        <a asp-asp-controller="Usuario" asp-action="" class="btn btn-info btn-lg ButtonSize">Info general</a>
+    <div class="row mb-5 mt-5">
+        <h1 class="text-center titleWelcome">BIENVENIDO</h1>
+    </div>
+    <div class="row d-flex justify-content-center formbtnIndex">
+        <div class="col-md-3 me-5">
+            <a asp-asp-controller="Usuario" asp-action="FormIndex" class="btn btn-info btn-lg ButtonSize">
+                <div class="ButtonWithImage me-2">
+                    <img src="../assets/img/tickets.png" alt="Ícono de solicitud de turno" class="btn-img">
+                </div>
+                Solicitar turno
+            </a>
+        </div>
+        <div class="col-md-3 ms-5">
+            
+            <a asp-asp-controller="Usuario" asp-action="" class="btn btn-info btn-lg ButtonSize">
+                <div class="ButtonWithImage me-2">
+                    <img src="../assets/img/info.png" alt="Ícono de solicitud de turno" class="btn-img">
+                </div>             
+                Info general
+            </a>
+        </div>
     </div>
 </section>
