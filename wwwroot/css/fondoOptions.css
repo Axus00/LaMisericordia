@@ -1,13 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-body {
-    font-family: "Signika Negative", sans-serif;
-    background: linear-gradient(rgba(253, 253, 253, 0.685), 
-    rgba(255, 255, 255, 0.568)), url("../assets/img/FondoIndex.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: hidden;
+.ButtonWithImage {
+    width: 40px;
+    position: relative;
+    display: inline-block;
+    text-decoration: none; /* Elimina la decoración de texto predeterminada */
+    color: #ffffff; /* Color del texto */
+}
+
+.btn-img {
+    position: absolute;
+    top: 0px;
+    left: -26%;
+    transform: translate(-50%, -50%);
+    width: 108px;
+    /* max-width: 100px; */
+    height: auto;
+    z-index: 1;
+}
+
+.container {
+    margin: auto;
 }
 
 .titleOptionIndex {
@@ -15,46 +28,35 @@ body {
     font-weight: bolder;
 }
 
-.container{
-    margin: auto;
+.textDescription {
+    font-size: 180%;
 }
 
+.logo, .logoClick, .logoWifi {
+    width: auto;
+    height: 160px; /* Using the same height for logo and logoClick for consistency */
+}
+
+.logoWifi {
+    height: 120px; /* Specific height adjustment for WiFi logo */
+}
 
 .btnOptions .btn {
-    width: 20%;
-    height: 80px; 
+    width: 90% !important;
+    height: 80px;
     font-size: 1.7rem;
-    padding: 30px 20px;
+    padding: 30px 47px;
     border-radius: 10px;
     background-image: linear-gradient(to right, #424bae, #009f58);
-    box-shadow: 0px 4px 5px rgba(125, 235, 215);
+    box-shadow: 0 4px 5px rgba(125, 235, 215);
     border: none;
     text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content: normal;
     align-items: center;
 }
 
 .boxBtn {
     height: 100px;
     background-color: black;
-}
-
-.logo {
-    width: auto;
-    height: 160px;
-}
-
-.logoClick {
-    width: auto;
-    height: 160px; 
-}
-
-.textDescription {
-    font-size: 180%;
-}
-
-.logoWifi {
-    width: auto;
-    height: 120px;
 }

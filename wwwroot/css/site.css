@@ -12,3 +12,12 @@
   }
 }
 
+body {
+  font-family: "Signika Negative", sans-serif;
+  background: linear-gradient(rgba(253, 253, 253, 0.685), rgba(255, 255, 255, 0.568)), 
+              url("../assets/img/FondoIndex.jpg") no-repeat center / cover;
+  height: 100vh; /* 100% de la altura de la ventana del navegador */
+  width: 100%; /* 100% del ancho de la ventana del navegador */
+  margin: 0; /* Eliminar margen predeterminado */
+  padding: 0; /* Eliminar relleno predeterminado */
+}
