@@ -24,33 +24,32 @@ public class AdminController : Controller
         _bcrypt = bcrypt;
     }
 
-    public IActionResult Index()
+    
+
+    public async Task<IActionResult>  Index()
     {
+
+        var viewModel = new IndexViewModel();
+
         //guardamos contador de turnos totoales
-        var contadorTurno = _context.Turnos.Count();
-        @ViewBag.contador = contadorTurno;
+        viewModel.TotalTurnos = await _context.Turnos.CountAsync();
 
         //Cantidad de medicamentos
-        var contadorMedicamento = _context.Turnos.Where(m => m.typeServicio.Equals("Medicamento")).Count();
-        @ViewBag.contador2 = contadorMedicamento;
+        viewModel.TotalMedicamentos = await _context.Turnos.Where(m => m.typeServicio == "Medicamentos").CountAsync();
 
         //Turno General
-        var contadoGeneral = _context.Turnos.Where(g => g.typeServicio.ToLower().Equals("General")).Count();
-        @ViewBag.contadoGeneral = contadoGeneral;
+        viewModel.TotalGeneral = await _context.Turnos.Where(g => g.typeServicio.ToLower().Equals("General")).CountAsync();
 
         //Total asesores
-        var contadorAsesor = _context.AsesoresRecepcion.Count();
-        @ViewBag.contadorAsesor = contadorAsesor;
+        viewModel.TotalAsesores = await _context.AsesoresRecepcion.CountAsync();
 
         //Admins
-        var contadorAdmins = _context.AsesoresRecepcion.Where(a => a.Roles.Equals("Admin")).Count();
-        @ViewBag.contadorAdmins = contadorAdmins;
+        viewModel.TotalAdmins =  await _context.AsesoresRecepcion.Where(a => a.Roles.Equals("Admin")).CountAsync();
 
         //Total Usuarios
-        var contadorUsuarios = _context.Usuarios.Count();
-        @ViewBag.contadorUsuarios = contadorUsuarios;
+        viewModel.TotalUsuarios = await _context.Usuarios.CountAsync();
 
-        return View();
+        return View(viewModel);
     }
 
     [Authorize(Roles = "Admin")]

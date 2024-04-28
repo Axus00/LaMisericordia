@@ -21,7 +21,7 @@ button.addEventListener("click", Mensaje);
 //Función para eliminar turno
 const button2 = document.getElementById("delete");
 
-function Confirm()
+function Confirm(id)
 {
     
     Swal.fire({
@@ -31,9 +31,10 @@ function Confirm()
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!"
+    confirmButtonText: "Sí, eliminar!"
     }).then((result) => {
     if (result.isConfirmed) {
+        location.href = `http://localhost:5081/Admin/Turnos/${id}`;
         Swal.fire({
         title: "Eliminado!",
         text: "El turno ha sido eliminado.",
