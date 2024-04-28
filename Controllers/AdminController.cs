@@ -125,6 +125,26 @@ public class AdminController : Controller
         return RedirectToAction("Empleados");
     }
 
+    //Filtrado de view Turnos
+    public async Task <IActionResult> Medicamentos()
+    {
+        var Medicamentos = _context.Turnos.Where(c => c.typeServicio == "Solicitar Medicamento");
+        return View("Turnos",await Medicamentos.ToListAsync());
+
+    }
+
+    public async Task <IActionResult> Pagos()
+    { 
+        var Pagos = _context.Turnos.Where(d => d.typeServicio == "Realizar Pagos");
+        return View("Turnos", await Pagos.ToListAsync());
+    }
+
+    public async Task <IActionResult> General()
+    {
+        var General = _context.Turnos.Where(c => c.typeServicio == "Cita General");
+        return View("General", await General.ToListAsync());
+    }
+
     public IActionResult Edit(int? id )
     {
         var Empleado = _context.AsesoresRecepcion.FirstOrDefault(d => d.Id == id);
