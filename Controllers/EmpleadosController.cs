@@ -77,7 +77,7 @@ public class EmpleadosController : Controller
             HttpContext.Response.Cookies.Append("Asesor", asesor.Id.ToString(), cookiesOptions);
             HttpContext.Response.Cookies.Append("ModuloAsesor", asesor.Modulo, cookiesOptions);
 
-            TempData["Message"] = "Login is already";
+            TempData["Message"] = "Has cerrado sesión de manera correcta";
             
             
 
@@ -96,7 +96,7 @@ public class EmpleadosController : Controller
         }
         else
         {
-            TempData["MessageError"] = "Assesor isn't registered";
+            TempData["MessageError"] = "Usuario o contraseña incorrectos";
             return RedirectToAction("Index", "Empleados");// si  no existe lo devolvemos al Login
         }
         
