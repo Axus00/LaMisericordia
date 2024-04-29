@@ -53,8 +53,6 @@ namespace LaMisericordia.Controllers
 
         public async Task<ActionResult> Ticket(string servicio)
         {
-            await Task.Delay(5000);
-
             int numeroTurno = ObtenerNumeroTurno(); 
 
             int selectModulo;
@@ -126,9 +124,6 @@ namespace LaMisericordia.Controllers
             
         }
 
-
-       
-
         [HttpPost]
         public IActionResult ReiniciarTurno()
         {
@@ -140,24 +135,21 @@ namespace LaMisericordia.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpInfoUser(string tipoDocumento, string numeroDocumento)
+        public async Task<IActionResult> UpInfoUser(Usuario usuario)
         {
-            Response.Cookies.Append("numeroDocumento", numeroDocumento);
-
-            var nuevoUsuario = new Usuario
+            if (!ModelState.IsValid)
             {
-                DocumentoIdentidad = numeroDocumento,
-                typeDocument = tipoDocumento
-            };
+                // Si el modelo no es válido, vuelve a mostrar el formulario con los mensajes de error
+                return View("FormIndex", usuario);
+            }
 
-            ViewBag.numDocumento = numeroDocumento;
-            ViewBag.tipoDocumento = tipoDocumento;
+            Response.Cookies.Append("numeroDocumento", usuario.DocumentoIdentidad);
 
-            _BaseContext.Usuarios.Add(nuevoUsuario); 
-            await _BaseContext.SaveChangesAsync(); 
+            _BaseContext.Usuarios.Add(usuario);
+            await _BaseContext.SaveChangesAsync();
 
-            var usuarioGuardado = await _BaseContext.Usuarios.FirstOrDefaultAsync(u => u.DocumentoIdentidad == numeroDocumento);
-            
+            var usuarioGuardado = await _BaseContext.Usuarios.FirstOrDefaultAsync(u => u.DocumentoIdentidad == usuario.DocumentoIdentidad);
+
             if (usuarioGuardado != null)
             {
                 int userId = usuarioGuardado.Id;
@@ -168,13 +160,11 @@ namespace LaMisericordia.Controllers
                 ViewBag.IDuser = "Usuario no encontrado";
             }
 
-            return RedirectToAction(nameof(OptionIndex)); 
+            return RedirectToAction(nameof(OptionIndex));
         }
-
-
-       
 
 
     }
 
 }
+
