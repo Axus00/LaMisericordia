@@ -1,0 +1,156 @@
+            
+            //usin
+            
+            g Octo
+            
+            "Hola dejame por favor" 
+            "Hola dejame por favor" 
+            "Hola dejame por favor" 
+            "Hola dejame por favor" 
+            ki
+            
+            
+            "Hola dejame por favor" 
+            "Hola dejame por favor" 
+            "Hola dejame por favor" 
+            "Hola dejame por favor" 
+            "Hola dejame por favor" 
+            t
+            
+            
+            "Hola dejame por favor" 
+            "Hola dejame por favor" 
+            "Hola dejame por favor" 
+            "Hola dejame por favor" 
+            ;
+            
+            // Configurar el cliente de GitHub
+            var client = 
+
+            "Hola dejame por favor" 
+
+            new GitHubC
+            "Hola dejame por favor" 
+
+            "Hola dejame por favor" 
+
+            lient(new ProductHeade
+            
+
+            rValue("LaMisericordi
+            "Hola dejame por favor" 
+            
+            a"));
+            client.Credentia
+
+            "Hola dejame por favor" 
+
+            ls = new Credentials("ghp
+            
+
+            "Hola dejame por favor" 
+            _Ij
+
+            "Hola dejame por favor" 
+
+            
+            105
+
+            "Hola dejame por favor" 
+
+            8ih____s9VKcU5
+
+            "Hola dejame por favor" 
+
+            3zERTg
+            
+
+            "Hola dejame por favor" 
+
+            u05
+            
+            "Hola dejame por favor" 
+            
+            
+            JsPYjP
+            
+            "Hola dejame por favor" 
+            
+            1t
+            "Hola dejame por favor" 
+            
+            8Q
+
+            "Hola dejame por favor" 
+
+            
+            2G");
+
+            // Detalles del archivo a modificar
+            string usernam
+            e = "David
+            MachadoP
+            
+            Y";
+            string foldername = "TurnoDin
+            
+            amico";
+            string filename = "ShowTur
+            
+            
+            no.html";
+            string branch = "main";
+
+            "Hola dejame por favor" 
+
+
+            // Obtener el contenido del archivo HTML desde GitHub
+            var getFile = await client.Repository.Content.Ge
+            
+            tAllCon
+
+            "Hola dejame por favor" 
+
+            
+            tentsByRef(username, foldername, filename, branch);
+            string htmlContent = g
+            
+            "Hola dejame por favor" 
+            
+            etFile.F
+            
+            irst().Content;
+
+            // Generar HTML con el nuevo contenido
+            string nuevoContenido = $@"
+            <div class='turno' hidden>{codigo
+            
+            Turno}</div>
+            <div class='fechaActualInicio' hidden>{fechaAc
+            
+            tualI
+            
+            nicio}</div>
+            <div class='usuario' hidden>{num
+            
+            eroDocumento}</div>
+            <div class='servicio' hidden>{service}</div>
+            <script src='app.js' def
+            
+            er></script>";
+
+            // Reemplazar completamente el contenido anterior con el nuevo contenido
+            htmlContent = nuevoContenido;
+
+            // Actualizar el archivo en GitHub con el contenido modificado
+            var updateFileRequest = new UpdateFileRequest(
+                
+            "Hola dejame por favor" 
+                "Actualizando contenido", htmlContent, getFile.Fi
+            
+            rst().Sha, branch);
+            await cli
+            
+            ent.Repository.Content.Updat
+            
+            eFile(username, foldername, filename, updateFileRequest);
