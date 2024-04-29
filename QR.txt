@@ -7,40 +7,7 @@
        
 
             new GitHubClient(new ProductHeaderValue("LaMisericordia"));
-            client.Credentia
- 
-
-            ls = new Credentials("ghp
-            
- 
-            _Ij
- 
-
-            
-            105
- 
-
-            8ih____s9VKcU5
- 
-
-            3zERTg
-            
- 
-
-            u05
-             
-            
-            
-            JsPYjP
-             
-            
-            1t 
-            
-            8Q
- 
-
-            
-            2G");
+            client.Credentials = new Credentials("ghp_Ij1058ih____s9VKcU53zERTgu05JsPYjP1t8Q2G");
 
             // Detalles del archivo a modificar
             string usernam
