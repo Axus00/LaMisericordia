@@ -6,10 +6,18 @@
     <link rel="stylesheet" href="~/css/SkormJF.css" />
 </head>
 
-<div class="container">
+ <div class="container">
     <div class="row">
         <div class="col-md-2">
             <a class="btn btn-xm btn-dark mb-3 mt-3 w-100" asp-controller="Empleados" asp-action="Logout">Cerrar Sesión</a>
+            @if(User.IsInRole("Admin"))
+            {
+                <div class="d-flex gap-3">
+                    <a class="btn btn-sm btn-dark" asp-controller="Admin" asp-action="Index">CRM</a>
+                    <a class="btn btn-sm btn-dark" asp-controller="Admin" asp-action="Empleados">Asesores</a>
+                    <a class="btn btn-sm btn-dark" asp-controller="Admin" asp-action="Turnos">Historial de Turnos</a>
+                </div>
+            }
         </div>
         <div class="col-md-2 d-flex justify-content-center">
             <form asp-controller="Empleados" asp-action="ReiniciarTurno" method="post">
@@ -19,7 +27,6 @@
         
         <h1 class="text-center mb-4">Asesor del Módulo # @ViewBag.modulo</h1>    
     </div>
-    @ViewBag.contador
     <div class="Pantalla">
         <div class="Titulo">
             <lord-icon
@@ -112,7 +119,6 @@
                     
                 </tbody>
             </table>
-            <h5>hola</h5>
         </div>
     </div>
 </section>
