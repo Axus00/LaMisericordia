@@ -67,11 +67,16 @@
             <form class="form" method="get" asp-action="Details">
                 <div class="col-2 mb-3">
                     <label>Correo</label>
-                    <input class="form-control" asp-for="Correo" placeholder="@Model.Correo" type="text">
+                    <input class="form-control" asp-for="Correo" placeholder="@Model.Correo" type="text" disabled>
                 </div>
                 <div class="col-2 mb-3">
                     <label>Modulo</label>
-                    <input class="form-control" asp-for="Modulo" placeholder="@Model.Modulo" type="text">
+                    <input class="form-control" asp-for="Modulo" placeholder="@Model.Modulo" type="text" disabled>
+                </div>
+
+                <div class="col-2 mb-3">
+                    <label>Contraseña</label>
+                    <input class="form-control" asp-for="Contrasena" placeholder="@Model.Contrasena" type="text" disabled>
                 </div>
                 
                 <a class="btn btn-sm btn-success" asp-controller="Empleados" asp-action="Home">Regresar</a>

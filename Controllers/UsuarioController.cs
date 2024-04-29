@@ -1,5 +1,4 @@
 // Importamos los paquetes y clases necesarios para nuestro controlador
-
 using Microsoft.AspNetCore.Mvc; 
 using LaMisericordia.Data; 
 using Microsoft.EntityFrameworkCore; 
@@ -7,16 +6,13 @@ using LaMisericordia.Models;
 using QRCoder;
 /*     //using Octokit; */
 
-
 // Definimos el espacio de nombres y la clase para nuestro controlador de empleados
-
 namespace LaMisericordia.Controllers 
 {
     public class UsuarioController : Controller 
     {
         // Declaramos los campos para acceder al contexto de la base de datos y la clase de ayuda para subir archivos
         public readonly BaseContext _BaseContext; 
-
 
         // Constructor para inicializar los campos
         public UsuarioController(BaseContext BaseContext) 
@@ -34,7 +30,6 @@ namespace LaMisericordia.Controllers
         {
             await RecargarPagina();
             return View(await _BaseContext.Turnos.ToListAsync());
-
         }
 
         public async Task RecargarPagina(){
@@ -94,7 +89,6 @@ namespace LaMisericordia.Controllers
             var imgBase64 = Convert.ToBase64String(qrCodeImage);
 
             ViewBag.QRCodeImage = imgBase64;
-
 
             var nuevoTurno = new Turno
             {
@@ -163,11 +157,8 @@ namespace LaMisericordia.Controllers
         [HttpPost]
         public IActionResult ReiniciarTurno()
         {
-
             Response.Cookies.Append("NumeroTurno", "0");
-
-            return RedirectToAction("Ticket"); 
-            
+            return RedirectToAction("Ticket");             
         }
 
         [HttpPost]
@@ -195,12 +186,8 @@ namespace LaMisericordia.Controllers
             {
                 ViewBag.IDuser = "Usuario no encontrado";
             }
-
             return RedirectToAction(nameof(OptionIndex));
         }
-
-
     }
-
 }
 

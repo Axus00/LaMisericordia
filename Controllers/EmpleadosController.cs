@@ -12,7 +12,6 @@ using System.Speech.Synthesis;
 
 namespace LaMisericordia.Controllers;
 
-
 public class EmpleadosController : Controller
 {
     private readonly BaseContext _context;
@@ -33,8 +32,6 @@ public class EmpleadosController : Controller
         return View();
     }
 
-
-
     //Login
     [HttpPost]
     public async Task<IActionResult> Login(string correo, string Contrasena)
@@ -45,7 +42,6 @@ public class EmpleadosController : Controller
         //Inicio configuración cookie para los roles
         if(asesor != null)
         {
-
             Response.Cookies.Append("Modulo",asesor.Modulo);
             var claims = new List<Claim>
             {
@@ -72,15 +68,11 @@ public class EmpleadosController : Controller
                 Secure = true
             };
                 
-            
-        
             HttpContext.Response.Cookies.Append("Asesor", asesor.Id.ToString(), cookiesOptions);
             HttpContext.Response.Cookies.Append("ModuloAsesor", asesor.Modulo, cookiesOptions);
 
             TempData["Message"] = "Has cerrado sesión de manera correcta";
             
-            
-
             //agregamos verificación de password
             if(_bcrypt.verifyContrasena(Contrasena,hashedContrasena))
             {
@@ -99,7 +91,6 @@ public class EmpleadosController : Controller
             TempData["MessageError"] = "Usuario o contraseña incorrectos";
             return RedirectToAction("Index", "Empleados");// si  no existe lo devolvemos al Login
         }
-        
     }
 
     //Logout
@@ -111,7 +102,6 @@ public class EmpleadosController : Controller
         HttpContext.Response.Cookies.Delete("Asesor");
         HttpContext.Response.Cookies.Delete("Modulo");
         HttpContext.Response.Cookies.Delete("ModuloAsesor");
-
 
         await _context.SaveChangesAsync();
         return RedirectToAction("Index", "Empleados");
@@ -127,8 +117,6 @@ public class EmpleadosController : Controller
 
         @ViewBag.modulo = numeroModulo;
         
-
-
         return View(await _context.Turnos.ToListAsync());
     }
 
@@ -137,22 +125,18 @@ public class EmpleadosController : Controller
     {
         //Llámamos el ServicioInner
         var inner = _servicios.ServicioInner(usuarioId);
-
         return View(inner);
     }
 
     public IActionResult Liberar(int id)
     {
-
         var turno = _context.Turnos.FirstOrDefault(t => t.Id == id);
         turno.Estado = "Finalizado";
         turno.FechaHoraFin = DateTime.Now;
         _context.Turnos.Update(turno);
         _context.SaveChanges();
         return RedirectToAction("Home");
-
     }
-
 
     public IActionResult Ausente(int id)
     {
@@ -162,7 +146,6 @@ public class EmpleadosController : Controller
         _context.Turnos.Update(turno);
         _context.SaveChanges();
         return RedirectToAction("Home");
-
     }
 
     public IActionResult SubirTurno(int id )
@@ -180,11 +163,9 @@ public class EmpleadosController : Controller
         return RedirectToAction("Home");        
     }
 
-
     public async Task <IActionResult> Medicamentos()
     {
-        var Medicamentos = _context.Turnos.Where(c => c.typeServicio == "Solicitar Medicamento");
-        
+        var Medicamentos = _context.Turnos.Where(c => c.typeServicio == "Solicitar Medicamento");        
         return View("Home",await Medicamentos.ToListAsync());
     }
 
@@ -205,7 +186,7 @@ public class EmpleadosController : Controller
         await RepetirTurno(llamado.NameTurno);
         return RedirectToAction("Home");
     }
-    
+
     private async Task RepetirTurno(string Turno)
     {
         //Primera llamada
@@ -224,11 +205,8 @@ public class EmpleadosController : Controller
     [HttpPost]
     public IActionResult ReiniciarTurno()
     {
-
         Response.Cookies.Append("NumeroTurno", "0");
-
-        return RedirectToAction("Empleados", "Home"); 
-        
+        return RedirectToAction("Empleados", "Home");  
     }
     
 }
