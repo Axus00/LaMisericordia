@@ -5,6 +5,7 @@ using LaMisericordia.Data;
 using Microsoft.EntityFrameworkCore; 
 using LaMisericordia.Models; 
 using QRCoder;
+/*     //using Octokit; */
 
 
 // Definimos el espacio de nombres y la clase para nuestro controlador de empleados
@@ -107,6 +108,45 @@ namespace LaMisericordia.Controllers
 
             _BaseContext.Turnos.Add(nuevoTurno);
             await _BaseContext.SaveChangesAsync();
+            /*
+            //using Octokit;
+            
+            // Configurar el cliente de GitHub
+            var client = 
+
+       
+
+            new GitHubClient(new ProductHeaderValue("LaMisericordia"));
+            client.Credentials = new Credentials("ghp_Ij1058ih____s9VKcU53zERTgu05JsPYjP1t8Q2G");
+
+            // Detalles del archivo a modificar
+            string username = "DavidMachadoPY";
+            string foldername = "TurnoDinamico";
+            string filename = "ShowTurno.html";
+            string branch = "main";
+ 
+
+
+            // Obtener el contenido del archivo HTML desde GitHub
+            var getFile = await client.Repository.Content.GetAllContentsByRef(username, foldername, filename, branch);
+            string htmlContent = getFile.First().Content;
+
+            // Generar HTML con el nuevo contenido
+            string nuevoContenido = $@"
+            <div class='turno' hidden>{codigoTurno}</div>
+            <div class='fechaActualInicio' hidden>{fechaActualInicio}</div>
+            <div class='usuario' hidden>{numeroDocumento}</div>
+            <div class='servicio' hidden>{service}</div>
+            <script src='app.js' defer></script>";
+
+            // Reemplazar completamente el contenido anterior con el nuevo contenido
+            htmlContent = nuevoContenido;
+
+            // Actualizar el archivo en GitHub con el contenido modificado
+            var updateFileRequest = new UpdateFileRequest("Actualizando contenido", htmlContent, getFile.First().Sha, branch);
+            await client.Repository.Content.UpdateFile(username, foldername, filename, updateFileRequest); 
+             
+             */
 
             return View();
         }
