@@ -38,7 +38,7 @@ public class AdminController : Controller
         viewModel.TotalMedicamentos = await _context.Turnos.Where(m => m.typeServicio == "Medicamentos").CountAsync();
 
         //Turno General
-        viewModel.TotalGeneral = await _context.Turnos.Where(g => g.typeServicio.ToLower().Equals("General")).CountAsync();
+        viewModel.TotalGeneral = await _context.Turnos.Where(g => g.typeServicio.ToLower() == "general").CountAsync();
 
         //Total asesores
         viewModel.TotalAsesores = await _context.AsesoresRecepcion.CountAsync();
