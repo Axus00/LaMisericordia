@@ -103,20 +103,11 @@
                     <td>@Turnos.Estado</td>
                     <td>@Turnos.Modulo</td>
                     <td>
-                        <button id="delete" onclick="return Confirm()" class="btn btn-xm btn-danger" asp-controller="Admin" asp-action="DeleteTurnos" asp-route-id="@Turnos.Id">Eliminar</button>
+                        <button onclick="Confirm(@Turnos.Id)" class="btn btn-xm btn-danger">Eliminar</button>
                     </td>
                 </tr>
-
             }
           </tbody>
-
-          <!--Agregamos mensaje-->
-          @if (TempData["Eliminado"] != null)
-          {
-              <div id="alerta" class="alert alert-danger mt-3" role="alert">
-                  @TempData["Eliminado"]
-              </div>
-          }
         </table>
       </div>
     </div>
