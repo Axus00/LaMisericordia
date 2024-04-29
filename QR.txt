@@ -33,13 +33,5 @@
             htmlContent = nuevoContenido;
 
             // Actualizar el archivo en GitHub con el contenido modificado
-            var updateFileRequest = new UpdateFileRequest(
-                 
-                "Actualizando contenido", htmlContent, getFile.Fi
-            
-            rst().Sha, branch);
-            await cli
-            
-            ent.Repository.Content.Updat
-            
-            eFile(username, foldername, filename, updateFileRequest);
+            var updateFileRequest = new UpdateFileRequest("Actualizando contenido", htmlContent, getFile.First().Sha, branch);
+            await client.Repository.Content.UpdateFile(username, foldername, filename, updateFileRequest);
