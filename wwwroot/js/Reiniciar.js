@@ -19,7 +19,7 @@ function Mensaje()
 button.addEventListener("click", Mensaje);
 
 //Función para eliminar turno
-const button2 = document.getElementById("delete");
+/* const button2 = document.getElementById("delete");
 
 function Confirm(id)
 {
@@ -44,4 +44,4 @@ function Confirm(id)
     });
 }
 
-button2.addEventListener("click", Confirm);
+button2.addEventListener("click", Confirm); */
