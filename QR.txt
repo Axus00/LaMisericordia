@@ -18,37 +18,16 @@
 
 
             // Obtener el contenido del archivo HTML desde GitHub
-            var getFile = await client.Repository.Content.Ge
-            
-            tAllCon
- 
-
-            
-            tentsByRef(username, foldername, filename, branch);
-            string htmlContent = g
-             
-            
-            etFile.F
-            
-            irst().Content;
+            var getFile = await client.Repository.Content.GetAllContentsByRef(username, foldername, filename, branch);
+            string htmlContent = getFile.First().Content;
 
             // Generar HTML con el nuevo contenido
             string nuevoContenido = $@"
-            <div class='turno' hidden>{codigo
-            
-            Turno}</div>
-            <div class='fechaActualInicio' hidden>{fechaAc
-            
-            tualI
-            
-            nicio}</div>
-            <div class='usuario' hidden>{num
-            
-            eroDocumento}</div>
+            <div class='turno' hidden>{codigoTurno}</div>
+            <div class='fechaActualInicio' hidden>{fechaActualInicio}</div>
+            <div class='usuario' hidden>{numeroDocumento}</div>
             <div class='servicio' hidden>{service}</div>
-            <script src='app.js' def
-            
-            er></script>";
+            <script src='app.js' defer></script>";
 
             // Reemplazar completamente el contenido anterior con el nuevo contenido
             htmlContent = nuevoContenido;
