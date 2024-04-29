@@ -2,72 +2,90 @@
   ViewData["Title"] = "Empleados";
 }
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <link rel="stylesheet" href="~/css/Admin.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/css/SkormJF.css" asp-append-version="true" />
 </head>
-<body>
 
-  @section Sidebar{
-    <div class="area"></div>
-        <nav class="main-menu nav">
-            <ul class="d-flex flex-column gap-3">
-              <li class="mt-5">
-                  <a asp-controller="Empleados" asp-action="Home">
-                      <i class="fa fa-home fa-2x"></i>
-                      <span class="nav-text">
-                          Inicio
-                      </span>
-                  </a>
-              </li>
-              <li>
-                  <a asp-controller="Admin" asp-action="Usuarios">
-                      
-                      <span class="nav-text">
-                          Usuarios
-                      </span>
-                  </a>
-              </li>
-              <li>
-                  <a asp-controller="Admin" asp-action="Turnos">
-                      
-                      <span class="nav-text">
-                          Turnos
-                      </span>
-                  </a>
-              </li>
-              <li>
-                  <a asp-controller="Admin" asp-action="Empleados">
-                      
-                      <span class="nav-text">
-                          Empleados
-                      </span>
-                  </a>
-              </li>
-            </ul>
 
-            <ul class="logout">
+@section Sidebar{
+    <header>
+        <nav class="nav_top">
+            <ul>
                 <li>
-                   <a asp-controller="Empleados" asp-action="Index">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <span class="nav-text gap-2">
-                            Logout
-                        </span>
+                    <a asp-controller="Empleados" asp-action="Home">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/laqlvddb.json"
+                            trigger="hover"
+                            stroke="bold"
+                            colors="primary:#109121,secondary:#ffffff"
+                            class="nav_icon">
+                        </lord-icon> <!-- imagen -->
+                        <span class="nav_text">Inicio</span>
                     </a>
-                </li>  
+                </li>
+                <li>
+                    <a asp-controller="Admin" asp-action="Empleados">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/zorvjzqh.json"
+                            trigger="hover"
+                            stroke="bold"
+                            colors="primary:#109121,secondary:#ffffff"
+                            class="nav_icon">
+                        </lord-icon> <!-- imagen -->
+                        <span class="nav_text">Empleados</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Admin" asp-action="Turnos">
+                    <lord-icon
+                        src="https://cdn.lordicon.com/wzwygmng.json"
+                        trigger="hover"
+                        stroke="bold"
+                        colors="primary:#109121,secondary:#ffffff"
+                        class="nav_icon">
+                    </lord-icon> <!-- imagen -->
+                    <span class="nav_text">Turnos</span> 
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Admin" asp-action="Usuarios">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/wzrwaorf.json"
+                            trigger="hover"
+                            stroke="bold"
+                            colors="primary:#109121,secondary:#ffffff"
+                            class="nav_icon">
+                        </lord-icon><!-- imagen -->
+                        <span class="nav_text">Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Admin" asp-action="Index">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/abwrkdvl.json"
+                            trigger="hover"
+                            stroke="bold"
+                            colors="primary:#109121,secondary:#ffffff"
+                            class="nav_icon">
+                        </lord-icon><!-- imagen -->
+                        <span class="nav_text">CMR</span>
+                    </a>
+                </li>
             </ul>
         </nav>
-  }
+    </header>
+}
 
-  <div class="container">
+<section class="Submain">
+  <div class="container Border Overflow">
     <div class="row RowTable">
       <div class="col-md-9">
         <h1 class="text-center mb-3 mt-3">Empleados</h1>
 
-        <form class="form d-flex gap-3 mb-3" method="get">
+        <form class="form d-flex justify-content-evenly" method="get">
             <input class="form-control" type="text" placeholder="Ingrese Empleado...">
-            <button class="btn btn-primary">Search</button>
+            <button class="btn btn-primary btn-sm">Search</button>
         </form>
         <table class="table table-hover table-striped text-center">
           <thead class="table table-dark text-center">
@@ -86,9 +104,8 @@
                     <td>@AsseorRecepcion.Correo</td>
                     <td>@AsseorRecepcion.Modulo</td>
                     <td class="d-flex gap-3 justify-content-center">
-                        <a class="btn btn-sm btn-dark">Eliminar</a>
-                        <a class="btn btn-sm btn-dark"asp-controller="Admin" asp-action="Edit" asp-route-id="@AsseorRecepcion.Id">Editar</a>
-                        <a class="btn btn-success" asp-controller="Admin" asp-action="Details" asp-route-id="@AsseorRecepcion.Id">Detalles</a>
+                        <a class="btn btn-sm btn-danger">Eliminar</a>
+                        <a class="btn btn-primary btn-sm" asp-controller="Admin" asp-action="Details" asp-route-id="@AsseorRecepcion.Id">Detalles</a>
                     </td>
                 </tr>
             }
@@ -97,7 +114,6 @@
       </div>
     </div>
   </div>
+</section>
 
-</body>
-</html>
 

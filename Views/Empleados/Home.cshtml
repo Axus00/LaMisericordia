@@ -3,27 +3,84 @@
 }
 
 <head>
+    <link rel="stylesheet" href="~/css/Admin.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/SkormJF.css" />
 </head>
 
- <div class="container">
+@if(User.IsInRole("Admin")){
+    <header>
+        <nav class="nav_top">
+            <ul>
+                <li>
+                    <a asp-controller="Empleados" asp-action="Home">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/laqlvddb.json"
+                            trigger="hover"
+                            stroke="bold"
+                            colors="primary:#109121,secondary:#ffffff"
+                            class="nav_icon">
+                        </lord-icon> <!-- imagen -->
+                        <span class="nav_text">Inicio</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Admin" asp-action="Empleados">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/zorvjzqh.json"
+                            trigger="hover"
+                            stroke="bold"
+                            colors="primary:#109121,secondary:#ffffff"
+                            class="nav_icon">
+                        </lord-icon> <!-- imagen -->
+                        <span class="nav_text">Empleados</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Admin" asp-action="Turnos">
+                    <lord-icon
+                        src="https://cdn.lordicon.com/wzwygmng.json"
+                        trigger="hover"
+                        stroke="bold"
+                        colors="primary:#109121,secondary:#ffffff"
+                        class="nav_icon">
+                    </lord-icon> <!-- imagen -->
+                    <span class="nav_text">Turnos</span> 
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Admin" asp-action="Usuarios">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/wzrwaorf.json"
+                            trigger="hover"
+                            stroke="bold"
+                            colors="primary:#109121,secondary:#ffffff"
+                            class="nav_icon">
+                        </lord-icon><!-- imagen -->
+                        <span class="nav_text">Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Admin" asp-action="Index">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/abwrkdvl.json"
+                            trigger="hover"
+                            stroke="bold"
+                            colors="primary:#109121,secondary:#ffffff"
+                            class="nav_icon">
+                        </lord-icon><!-- imagen -->
+                        <span class="nav_text">CMR</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+}
+
+<div class="container">
     <div class="row">
-        <div class="col-md-2">
-            <a class="btn btn-xm btn-dark mb-3 mt-3 w-100" asp-controller="Empleados" asp-action="Logout">Cerrar Sesión</a>
-            @if(User.IsInRole("Admin"))
-            {
-                <div class="d-flex gap-3">
-                    <a class="btn btn-sm btn-dark" asp-controller="Admin" asp-action="Index">CRM</a>
-                    <a class="btn btn-sm btn-dark" asp-controller="Admin" asp-action="Empleados">Asesores</a>
-                    <a class="btn btn-sm btn-dark" asp-controller="Admin" asp-action="Turnos">Historial de Turnos</a>
-                </div>
-            }
+        <div class="col-md-12 d-flex justify-content-evenly">
+            <a class="btn btn-sm btn-outline-dark mb-5 mt-3" asp-controller="Empleados" asp-action="Logout">Cerrar Sesión</a>
         </div>
-        @* <div class="col-md-2 d-flex justify-content-center">
-            <form asp-controller="Empleados" asp-action="ReiniciarTurno" method="post">
-                <button class="btn btn-xm btn-warning mb-3 mt-3 w-100">Resetear Turnos</button>
-            </form>
-        </div> *@
         
         <h1 class="text-center mb-4">Asesor del Módulo # @ViewBag.modulo</h1>    
     </div>
@@ -42,7 +99,7 @@
         <div class="InfoTablas">
             <table class="table table-striped">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th scope="col">Id</th>
                         <th scope="col">Turno</th>
                         <th scope="col">Documento de usuario</th>
@@ -54,7 +111,7 @@
                 <tbody>
                     @foreach(var Turnos in Model){
                         if(@Turnos.Estado == "En proceso"){
-                            <tr>
+                            <tr class="text-center">
                                 <th scope="row">@Turnos.Id</th>
                                 <td>@Turnos.NameTurno</td>
                                 <td>1023626270</td>
@@ -90,7 +147,7 @@
         <div class="InfoTablas">
             <table class="table table-striped">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th scope="col">ID</th>
                         <th scope="col">Turno</th>
                         <th scope="col">Documento De usuario</th>
@@ -102,9 +159,10 @@
                 <tbody>
                     @foreach(var Turnos in Model){
                         if(@Turnos.Estado == "En espera"){
-                            <tr>
+                            <tr class="text-center">
                                 <th scope="row">@Turnos.Id</th>
                                 <td>@Turnos.NameTurno</td>
+                                <td>@Turnos.UsuariosId</td>
                                 <td>@Turnos.typeServicio</td>
                                 <td>@Turnos.Estado</td>
                                 <td>
@@ -123,7 +181,7 @@
 </section>
 
 
-<script src="https://cdn.lordicon.com/lordicon.js"></script>
+
 
 
 

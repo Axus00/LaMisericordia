@@ -4,138 +4,159 @@
     ViewData["Title"] = "Dashboard";
 }
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <link rel="stylesheet" href="~/css/Admin.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/SkormJF.css" asp-append-version="true" />
 </head>
-<body>
-    @section Sidebar{
-      <div class="area"></div>
-        <nav class="main-menu nav">
-            <div class="image">
-                <img src="~/assets/img/Fondo.jpg" alt="logo" width="50px" height="50px">
-            </div>
-            <ul class="d-flex flex-column gap-3">
-              <li class="mt-5">
-                  <a asp-controller="Empleados" asp-action="Home">
-                      <i class="fa fa-home fa-2x"></i>
-                      <span class="nav-text">
-                          Inicio
-                      </span>
-                  </a>
-              </li>
-              <li>
-                  <a asp-controller="Admin" asp-action="Usuarios">
-                      
-                      <span class="nav-text">
-                          Usuarios
-                      </span>
-                  </a>
-              </li>
-              <li>
-                  <a asp-controller="Admin" asp-action="Turnos">
-                      
-                      <span class="nav-text">
-                          Turnos
-                      </span>
-                  </a>
-              </li>
-              <li>
-                  <a asp-controller="Admin" asp-action="Empleados">
-                      
-                      <span class="nav-text">
-                          Empleados
-                      </span>
-                  </a>
-              </li>
-            </ul>
 
-            <ul class="logout">
+@section Sidebar{
+    <header>
+        <nav class="nav_top">
+            <ul>
                 <li>
-                    <a asp-controller="Empleados" asp-action="Index">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <span class="nav-text gap-2">
-                            Logout
-                        </span>
+                    <a asp-controller="Empleados" asp-action="Home">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/laqlvddb.json"
+                            trigger="hover"
+                            stroke="bold"
+                            colors="primary:#109121,secondary:#ffffff"
+                            class="nav_icon">
+                        </lord-icon> <!-- imagen -->
+                        <span class="nav_text">Inicio</span>
                     </a>
-                </li>  
+                </li>
+                <li>
+                    <a asp-controller="Admin" asp-action="Empleados">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/zorvjzqh.json"
+                            trigger="hover"
+                            stroke="bold"
+                            colors="primary:#109121,secondary:#ffffff"
+                            class="nav_icon">
+                        </lord-icon> <!-- imagen -->
+                        <span class="nav_text">Empleados</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Admin" asp-action="Turnos">
+                    <lord-icon
+                        src="https://cdn.lordicon.com/wzwygmng.json"
+                        trigger="hover"
+                        stroke="bold"
+                        colors="primary:#109121,secondary:#ffffff"
+                        class="nav_icon">
+                    </lord-icon> <!-- imagen -->
+                    <span class="nav_text">Turnos</span> 
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Admin" asp-action="Usuarios">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/wzrwaorf.json"
+                            trigger="hover"
+                            stroke="bold"
+                            colors="primary:#109121,secondary:#ffffff"
+                            class="nav_icon">
+                        </lord-icon><!-- imagen -->
+                        <span class="nav_text">Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Admin" asp-action="Index">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/abwrkdvl.json"
+                            trigger="hover"
+                            stroke="bold"
+                            colors="primary:#109121,secondary:#ffffff"
+                            class="nav_icon">
+                        </lord-icon><!-- imagen -->
+                        <span class="nav_text">CMR</span>
+                    </a>
+                </li>
             </ul>
         </nav>
-    }
+    </header>
+}
 
-    <!--Cartas-->
+<section class="Submain">
     <div class="container mt-5">
-        <h1 class="text-center">CRM La Misericordia</h1>
-        <div class="row RowTable">
-            <div class="col-3 mb-5">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="text-dark text-center">Turnos Totales</h2>
-                        <p class="text-center">@Model.TotalTurnos</p>
-                    </div>
+    <h1 class="text-center">CRM La Misericordia</h1>
+    <div class="row RowTable">
+        <div class="col-3 mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-dark text-center">Turnos Totales</h2>
+                    <p class="text-center">@Model.TotalTurnos</p>
                 </div>
             </div>
-            <div class="col-3 mb-5">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="text-dark text-center">Medicamentos</h2>
-                        <p class="text-center">@Model.TotalMedicamentos</p>
-                    </div>
+        </div>
+        <div class="col-3 mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-dark text-center">Medicamentos</h2>
+                    <p class="text-center">@Model.TotalMedicamentos</p>
                 </div>
             </div>
-            <div class="col-3 mb-5">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="text-dark text-center">Turnos Pagos</h2>
-                        <p class="text-center">11</p>
-                    </div>
+        </div>
+        <div class="col-3 mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-dark text-center">Turnos Pagos</h2>
+                    <p class="text-center">11</p>
                 </div>
             </div>
-            <div class="col-3 mb-5">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="text-dark text-center">Turnos General</h2>
-                        <p class="text-center">@Model.TotalGeneral</p>
-                    </div>
+        </div>
+        <div class="col-3 mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-dark text-center">Turnos General</h2>
+                    <p class="text-center">@Model.TotalGeneral</p>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="text-dark text-center">Usuarios Totales</h2>
-                        <p class="text-center">@Model.TotalUsuarios</p>
-                    </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-dark text-center">Usuarios Totales</h2>
+                    <p class="text-center">@Model.TotalUsuarios</p>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="text-dark text-center">Admin</h2>
-                        <p class="text-center">@Model.TotalAdmins</p>
-                    </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-dark text-center">Admin</h2>
+                    <p class="text-center">@Model.TotalAdmins</p>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="text-dark text-center">Empleados</h2>
-                        <p class="text-center">@Model.TotalAsesores</p>
-                    </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-dark text-center">Empleados</h2>
+                    <p class="text-center">@Model.TotalAsesores</p>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="text-dark text-center">Usuarios</h2>
-                        <p class="text-center">@Model.TotalUsuarios</p>
-                    </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-dark text-center">Usuarios</h2>
+                    <p class="text-center">@Model.TotalUsuarios</p>
                 </div>
             </div>
         </div>
     </div>
-</body>
-</html>
+</section>
+
+
+
+
+<!--Cartas-->
+
+
+
+
 
 
 

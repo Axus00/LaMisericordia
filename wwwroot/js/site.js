@@ -4,7 +4,7 @@
 // Write your JavaScript code.
 function ActualizarPagina(){
 
-   location.href = "~/Usuario/TicketScreen.cshtml";
+    location.href = "~/Usuario/TicketScreen.cshtml";
 
 }
 
