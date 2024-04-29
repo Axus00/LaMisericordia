@@ -24,8 +24,6 @@ public class AdminController : Controller
         _bcrypt = bcrypt;
     }
 
-    
-
     public async Task<IActionResult>  Index()
     {
 
@@ -55,8 +53,7 @@ public class AdminController : Controller
     [Authorize(Roles = "Admin")]
     //crear Asesores
     public IActionResult Create()
-    {
-        
+    {   
         return View();
     }
 
@@ -64,14 +61,11 @@ public class AdminController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(AsesorRecepcion asesor)
     {
-        
         asesor.Contrasena = BCrypt.Net.BCrypt.HashPassword(asesor.Contrasena);
         _context.AsesoresRecepcion.Add(asesor);
         await _context.SaveChangesAsync();
-
         return RedirectToAction("Index", "Empleados");
     }
-
 
     [Authorize(Roles = "Admin")]
     //Details
@@ -79,7 +73,6 @@ public class AdminController : Controller
     {
         return View(await _context.AsesoresRecepcion.FirstOrDefaultAsync(a => a.Id == id) );
     }
-
 
     public async Task<IActionResult> Usuarios() // usuarios
     {
@@ -92,7 +85,18 @@ public class AdminController : Controller
         _context.Usuarios.Remove(User);
         _context.SaveChanges();
         return RedirectToAction("Usuarios");
+    }
 
+    //Buscador de Usuarios
+    public IActionResult SearchUsers(string SearchString)
+    {
+        var Search = _context.Usuarios.AsQueryable();
+
+        if(!string.IsNullOrEmpty(SearchString)){
+            Search = Search.Where(u =>u.DocumentoIdentidad.Contains(SearchString) || u.typeDocument.Contains(SearchString));
+
+        }
+        return View("Usuarios",Search.ToList()); 
     }
 
     public async Task<IActionResult> Turnos()
@@ -100,6 +104,7 @@ public class AdminController : Controller
         return View(await _context.Turnos.ToListAsync());
     }
 
+    //Eliminar Turnos desde admin
     public IActionResult DeleteTurnos(int? id)
     {
         var Turno = _context.Turnos.FirstOrDefault(d => d.Id == id);
@@ -112,12 +117,23 @@ public class AdminController : Controller
         return RedirectToAction("Turnos");
     }
 
-
     public async Task<IActionResult> Empleados()
     {
         return View(await _context.AsesoresRecepcion.ToListAsync());
     }
+    
+    //buscador Empleados
+     public IActionResult SearchEmpleado(string SearchString)
+    {
+        var Search = _context.AsesoresRecepcion.AsQueryable();
 
+        if(!string.IsNullOrEmpty(SearchString)){
+            Search = Search.Where(u =>u.Correo.Contains(SearchString) || u.Modulo.Contains(SearchString) || u.Contrasena.Contains(SearchString));
+        }
+        return View("Usuarios",Search.ToList()); 
+    }
+
+    //Eliminar Empleados desde admin
     public IActionResult DeleteEmpleados(int? id)
     {
         var Empleado = _context.AsesoresRecepcion.FirstOrDefault(d => d.Id == id);
@@ -132,29 +148,19 @@ public class AdminController : Controller
     {
         var Medicamentos = _context.Turnos.Where(c => c.typeServicio == "Solicitar Medicamento");
         return View("Turnos",await Medicamentos.ToListAsync());
-
     }
-
     public async Task <IActionResult> Pagos()
     { 
         var Pagos = _context.Turnos.Where(d => d.typeServicio == "Realizar Pagos");
         return View("Turnos", await Pagos.ToListAsync());
     }
-
     public async Task <IActionResult> General()
     {
         var General = _context.Turnos.Where(c => c.typeServicio == "Cita General");
         return View("Turnos", await General.ToListAsync());
     }
 
-    public IActionResult Edit(int? id )
-    {
-        var Empleado = _context.AsesoresRecepcion.FirstOrDefault(d => d.Id == id);
-        return View(Empleado);
-    }
-
-
-    //Buscador
+    //Buscador Turnos
     public IActionResult SearchTurno(string SearchString)
     {
         var Search = _context.Turnos.AsQueryable();
@@ -164,18 +170,5 @@ public class AdminController : Controller
 
         }
         return View("Turnos",Search.ToList()); 
-    }
-
-    [HttpPost]
-    public IActionResult Actualizar(int? id,AsesorRecepcion A)
-    {
-        _context.AsesoresRecepcion.Update(A);
-        _context.SaveChanges();
-        return RedirectToAction("Index");
-    }
-
-
-    
-
-    
+    }   
 }

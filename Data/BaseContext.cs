@@ -9,7 +9,6 @@ public class BaseContext : DbContext
     {
         
     }
-    
     //conexicón con modelos
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Turno> Turnos { get; set; }

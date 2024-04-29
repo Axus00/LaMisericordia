@@ -1,21 +1,18 @@
 // Importamos los paquetes y clases necesarios para nuestro controlador
-
 using Microsoft.AspNetCore.Mvc; 
 using LaMisericordia.Data; 
 using Microsoft.EntityFrameworkCore; 
 using LaMisericordia.Models; 
 using QRCoder;
-
+/*     //using Octokit; */
 
 // Definimos el espacio de nombres y la clase para nuestro controlador de empleados
-
 namespace LaMisericordia.Controllers 
 {
     public class UsuarioController : Controller 
     {
         // Declaramos los campos para acceder al contexto de la base de datos y la clase de ayuda para subir archivos
         public readonly BaseContext _BaseContext; 
-
 
         // Constructor para inicializar los campos
         public UsuarioController(BaseContext BaseContext) 
@@ -33,7 +30,6 @@ namespace LaMisericordia.Controllers
         {
             await RecargarPagina();
             return View(await _BaseContext.Turnos.ToListAsync());
-
         }
 
         public async Task RecargarPagina(){
@@ -94,7 +90,6 @@ namespace LaMisericordia.Controllers
 
             ViewBag.QRCodeImage = imgBase64;
 
-
             var nuevoTurno = new Turno
             {
                 UsuariosId = Convert.ToInt32(HttpContext.Request.Cookies["userId"]),
@@ -107,6 +102,41 @@ namespace LaMisericordia.Controllers
 
             _BaseContext.Turnos.Add(nuevoTurno);
             await _BaseContext.SaveChangesAsync();
+            /*
+            //using Octokit;
+            
+            // Configurar el cliente de GitHub
+            var client = new GitHubClient(new ProductHeaderValue("LaMisericordia"));
+            client.Credentials = new Credentials("ghp_Ij1058ih____s9VKcU53zERTgu05JsPYjP1t8Q2G");
+
+            // Detalles del archivo a modificar
+            string username = "DavidMachadoPY";
+            string foldername = "TurnoDinamico";
+            string filename = "ShowTurno.html";
+            string branch = "main";
+ 
+
+
+            // Obtener el contenido del archivo HTML desde GitHub
+            var getFile = await client.Repository.Content.GetAllContentsByRef(username, foldername, filename, branch);
+            string htmlContent = getFile.First().Content;
+
+            // Generar HTML con el nuevo contenido
+            string nuevoContenido = $@"
+            <div class='turno' hidden>{codigoTurno}</div>
+            <div class='fechaActualInicio' hidden>{fechaActualInicio}</div>
+            <div class='usuario' hidden>{numeroDocumento}</div>
+            <div class='servicio' hidden>{service}</div>
+            <script src='app.js' defer></script>";
+
+            // Reemplazar completamente el contenido anterior con el nuevo contenido
+            htmlContent = nuevoContenido;
+
+            // Actualizar el archivo en GitHub con el contenido modificado
+            var updateFileRequest = new UpdateFileRequest("Actualizando contenido", htmlContent, getFile.First().Sha, branch);
+            await client.Repository.Content.UpdateFile(username, foldername, filename, updateFileRequest); 
+             
+             */
 
             return View();
         }
@@ -127,11 +157,8 @@ namespace LaMisericordia.Controllers
         [HttpPost]
         public IActionResult ReiniciarTurno()
         {
-
             Response.Cookies.Append("NumeroTurno", "0");
-
-            return RedirectToAction("Ticket"); 
-            
+            return RedirectToAction("Ticket");             
         }
 
         [HttpPost]
@@ -159,12 +186,8 @@ namespace LaMisericordia.Controllers
             {
                 ViewBag.IDuser = "Usuario no encontrado";
             }
-
             return RedirectToAction(nameof(OptionIndex));
         }
-
-
     }
-
 }
 

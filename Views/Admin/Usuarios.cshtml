@@ -65,8 +65,8 @@
   <div class="row RowTable">
     <div class="col-md-9">
 
-      <form class="form d-flex gap-3 mb-3" method="get">
-            <input class="form-control" type="text" placeholder="Buscar...">
+      <form class="form d-flex gap-3 mb-3" asp-controller="Admin" asp-action="SearchUsers" method="get">
+            <input class="form-control" type="text" name="SearchString" placeholder="Buscar...">
             <button class="btn btn-sm btn-primary" type="submit">Search</button>
       </form>
 
@@ -86,7 +86,7 @@
                   <td>@Usuarios.DocumentoIdentidad</td>
                   <td>@Usuarios.typeDocument</td>
                   <td>
-                      <button class="btn btn-danger" asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@Usuarios.Id">Delete</button>
+                      <a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteUser" asp-route-id="@Usuarios.Id">Delete</a>
                   </td>
               </tr>
           }
