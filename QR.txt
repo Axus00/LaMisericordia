@@ -1,4 +1,10 @@
             
+
+            Nota:Este codigo es necesario para que funcione el Qr,Debes copiar y pegar en el controllador Usuarios y descomentar el codigo en este controllador,
+            al descomentar elimnar "___" que esta en el codigo " client.Credentials = new Credentials("ghp_Ij1058ih____s9VKcU53zERTgu05JsPYjP1t8Q2G");"
+
+
+
             //using Octokit;
             
             // Configurar el cliente de GitHub
