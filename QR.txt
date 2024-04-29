@@ -10,18 +10,9 @@
             client.Credentials = new Credentials("ghp_Ij1058ih____s9VKcU53zERTgu05JsPYjP1t8Q2G");
 
             // Detalles del archivo a modificar
-            string usernam
-            e = "David
-            MachadoP
-            
-            Y";
-            string foldername = "TurnoDin
-            
-            amico";
-            string filename = "ShowTur
-            
-            
-            no.html";
+            string username = "DavidMachadoPY";
+            string foldername = "TurnoDinamico";
+            string filename = "ShowTurno.html";
             string branch = "main";
  
 
