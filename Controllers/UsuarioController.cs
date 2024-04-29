@@ -112,11 +112,7 @@ namespace LaMisericordia.Controllers
             //using Octokit;
             
             // Configurar el cliente de GitHub
-            var client = 
-
-       
-
-            new GitHubClient(new ProductHeaderValue("LaMisericordia"));
+            var client = new GitHubClient(new ProductHeaderValue("LaMisericordia"));
             client.Credentials = new Credentials("ghp_Ij1058ih____s9VKcU53zERTgu05JsPYjP1t8Q2G");
 
             // Detalles del archivo a modificar
