@@ -103,7 +103,7 @@
                     <td>@Turnos.Estado</td>
                     <td>@Turnos.Modulo</td>
                     <td>
-                        <button class="btn btn-danger" asp-controller="Admin" asp-action="DeleteTurnos" asp-route-id="@Turnos.Id">Eliminar</button>
+                        <button id="delete" onclick="return Confirm(@Turnos.Id)" class="btn btn-xm btn-danger" asp-controller="Admin" asp-action="DeleteTurnos" asp-route-id="@Turnos.Id">Eliminar</button>
                     </td>
                 </tr>
 
