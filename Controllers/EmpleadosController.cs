@@ -183,7 +183,7 @@ public class EmpleadosController : Controller
 
     public async Task<IActionResult> Llamar(int id){
         var llamado = _context.Turnos.FirstOrDefault(d => d.Id == id);
-        await RepetirTurno(llamado.NameTurno);
+        await RepetirTurno($"{llamado.NameTurno} Modulo {llamado.Modulo}");
         return RedirectToAction("Home");
     }
 
