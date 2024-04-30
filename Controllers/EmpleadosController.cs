@@ -115,7 +115,7 @@ public class EmpleadosController : Controller
         var numeroModulo = HttpContext.Request.Cookies["ModuloAsesor"];
         var modulo = HttpContext.Request.Cookies["Modulo"];
 
-        @ViewBag.modulo = numeroModulo;
+        @ViewBag.modulo = modulo;
         
         return View(await _context.Turnos.ToListAsync());
     }
